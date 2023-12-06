@@ -30,14 +30,14 @@ class WelcomeViewController: UIViewController {
         return customPageControl
     }()
     
-    private let nextButton: UIButton = {
+    private lazy var nextButton: UIButton = {
         let nextButton = UIButton(type: .system)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.backgroundColor = .black
         nextButton.tintColor = .lightGray
         nextButton.layer.cornerRadius = 10
-        //nextButton.addTarget(self, action: #selector(nextSlide), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextSlide), for: .touchUpInside)
         return nextButton
     }()
     
@@ -69,13 +69,16 @@ class WelcomeViewController: UIViewController {
         setupViews()
         setDelegates()
         setConstraints()
+        currentPage()
         
         slides = createSlides()
         setupSlidesScrollView(slides: slides)
         
+        
+        
     }
     
-    //MARK: - Methods
+    //MARK: - Private Methods
     
     private func setupViews() {
         view.backgroundColor = .white
@@ -89,6 +92,18 @@ class WelcomeViewController: UIViewController {
     
     private func setDelegates() {
         scrollView.delegate = self
+    }
+    
+    private func currentPage() {
+        if pageControl.currentPage == slides.count - 1 {
+            nextButton.isHidden = true
+            skipButton.isHidden = true
+            startButton.isHidden = false
+        } else {
+            nextButton.isHidden = false
+            skipButton.isHidden = false
+            startButton.isHidden = true
+        }
     }
     
     private func createSlides() -> [OnboardingView] {
@@ -109,7 +124,22 @@ class WelcomeViewController: UIViewController {
     //MARK: - Actions
     
     @objc private func nextSlide() {
+        let currentPageIndex = pageControl.currentPage
+        let nextPageIndex = currentPageIndex + 1
         
+        // Проверяем, что существует следующий слайд
+        guard nextPageIndex < slides.count else {
+            return
+        }
+        
+        // Прокручиваем scrollView до следующего слайда
+        let xOffset = scrollView.frame.width * CGFloat(nextPageIndex)
+        scrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+        
+        // Обновляем текущую страницу в pageControl
+        pageControl.currentPage = nextPageIndex
+        
+        currentPage()
     }
     
     private func setupSlidesScrollView(slides: [OnboardingView]) {
@@ -134,20 +164,10 @@ extension WelcomeViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetOffsetX = targetContentOffset.pointee.x
         let currentPageIndex = Int(targetOffsetX / view.frame.width)
-        let lastSlideIndex = slides.count - 1
-        
+
         pageControl.currentPage = currentPageIndex
-        
-        if currentPageIndex == lastSlideIndex {
-            nextButton.isHidden = true
-            skipButton.isHidden = true
-            startButton.isHidden = false
-        }
-        else {
-            nextButton.isHidden = false
-            skipButton.isHidden = false
-            startButton.isHidden = true
-        }
+
+        currentPage()
     }
 }
 

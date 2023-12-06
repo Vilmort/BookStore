@@ -51,7 +51,7 @@ class OnboardingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    //MARK: - Public Methods
     
     func setOnboardingLabelText(text: String) {
         onboardingTextLabel.text = text
@@ -60,6 +60,8 @@ class OnboardingView: UIView {
     func setOnboardingImage(image: UIImage) {
         onboardingImage.image = image
     }
+    
+    //MARK: - Methods
     
     private func setConstraints() {
         

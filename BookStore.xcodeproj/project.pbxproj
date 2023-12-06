@@ -182,8 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				92A595812B1CE1BD00A25926 /* WelcomeViewController.swift */,
-				92A287172B1F771A0029B73C /* CustomPageControl.swift */,
 				92A287192B1F77710029B73C /* OnboardingView.swift */,
+				92A287172B1F771A0029B73C /* CustomPageControl.swift */,
 			);
 			path = WelcomeViewController;
 			sourceTree = "<group>";

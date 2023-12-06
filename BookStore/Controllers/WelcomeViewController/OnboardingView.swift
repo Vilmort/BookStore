@@ -8,7 +8,9 @@
 import UIKit
 
 class OnboardingView: UIView {
-
+    
+    //MARK: - UI Elements
+    
     private let onboardingTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +35,8 @@ class OnboardingView: UIView {
         return image
     }()
 
+    //MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -46,6 +50,8 @@ class OnboardingView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Methods
     
     func setOnboardingLabelText(text: String) {
         onboardingTextLabel.text = text
@@ -72,4 +78,5 @@ class OnboardingView: UIView {
         
         ])
     }
+    
 }

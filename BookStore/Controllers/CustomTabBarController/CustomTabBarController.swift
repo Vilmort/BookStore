@@ -76,10 +76,6 @@ class CustomTabBarController: UITabBarController {
         tabBar.itemPositioning = .centered
         roundLayer.fillColor = UIColor.ghostWhite.cgColor
         tabBar.layer.masksToBounds = false
-        tabBar.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        tabBar.layer.shadowOffset = CGSize(width: -4, height: -6)
-        tabBar.layer.shadowOpacity = 0.9
-        tabBar.layer.shadowRadius = 20
         let appearance = UITabBarItem.appearance()
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),

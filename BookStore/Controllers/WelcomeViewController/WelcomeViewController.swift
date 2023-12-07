@@ -52,7 +52,7 @@ class WelcomeViewController: UIViewController {
     
     private lazy var startButton: UIButton = {
         let startButton = UIButton(type: .system)
-        startButton.setTitle("Get Started", for: .normal)
+        startButton.setTitle("GET STARTED", for: .normal)
         startButton.backgroundColor = .black
         startButton.tintColor = .white
         startButton.layer.cornerRadius = 10

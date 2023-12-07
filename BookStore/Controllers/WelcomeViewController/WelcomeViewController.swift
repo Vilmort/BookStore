@@ -35,30 +35,30 @@ class WelcomeViewController: UIViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.backgroundColor = .black
-        nextButton.tintColor = .lightGray
+        nextButton.tintColor = .white
         nextButton.layer.cornerRadius = 10
         nextButton.addTarget(self, action: #selector(nextSlide), for: .touchUpInside)
         return nextButton
     }()
     
-    private let skipButton: UIButton = {
+    private lazy var skipButton: UIButton = {
         let skipButton = UIButton(type: .system)
-        skipButton.translatesAutoresizingMaskIntoConstraints = false
         skipButton.setTitle("Skip", for: .normal)
         skipButton.setTitleColor(UIColor.lightGray, for: .normal)
-        
+        skipButton.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
         return skipButton
     }()
     
-    private let startButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Get Started", for: .normal)
-        button.backgroundColor = .black
-        button.tintColor = .lightGray
-        button.layer.cornerRadius = 10
-        //button.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var startButton: UIButton = {
+        let startButton = UIButton(type: .system)
+        startButton.setTitle("Get Started", for: .normal)
+        startButton.backgroundColor = .black
+        startButton.tintColor = .white
+        startButton.layer.cornerRadius = 10
+        startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        startButton.translatesAutoresizingMaskIntoConstraints = false
+        return startButton
     }()
     
     //MARK: - Life Cycle
@@ -69,7 +69,7 @@ class WelcomeViewController: UIViewController {
         setupViews()
         setDelegates()
         setConstraints()
-        currentPage()
+        currentButtons()
         
         slides = createSlides()
         setupSlidesScrollView(slides: slides)
@@ -94,7 +94,7 @@ class WelcomeViewController: UIViewController {
         scrollView.delegate = self
     }
     
-    private func currentPage() {
+    private func currentButtons() {
         if pageControl.currentPage == slides.count - 1 {
             nextButton.isHidden = true
             skipButton.isHidden = true
@@ -139,8 +139,17 @@ class WelcomeViewController: UIViewController {
         // Обновляем текущую страницу в pageControl
         pageControl.currentPage = nextPageIndex
         
-        currentPage()
+        currentButtons()
     }
+    
+    @objc private func skipButtonPressed() {
+        
+    }
+    
+    @objc private func startButtonPressed() {
+        
+    }
+    
     
     private func setupSlidesScrollView(slides: [OnboardingView]) {
         
@@ -167,7 +176,7 @@ extension WelcomeViewController: UIScrollViewDelegate {
 
         pageControl.currentPage = currentPageIndex
 
-        currentPage()
+        currentButtons()
     }
 }
 
@@ -206,4 +215,5 @@ extension WelcomeViewController {
         ])
     }
 }
+
 

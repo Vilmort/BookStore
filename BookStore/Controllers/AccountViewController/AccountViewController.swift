@@ -12,7 +12,7 @@ final class AccountViewController: UIViewController {
     private let boundsX = UIScreen.main.bounds.width
     private let boundsY = UIScreen.main.bounds.height
     
-    private var userName: UITextField {
+    private var textFieldMy: UITextField {
         let textView = UITextField(frame: CGRect.init(x: boundsX * 0.10, y: boundsY / 2, width: boundsX * 0.80, height: boundsY * 0.05))
         let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 80, height: view.frame.size.height))
         let label = UILabel(frame: CGRect.init(x: 20, y: 0, width: 100, height: view.frame.size.height))
@@ -27,7 +27,7 @@ final class AccountViewController: UIViewController {
         textView.backgroundColor = .systemGray5
         return textView
     }
-
+    
     
     private var avatarView: UIImageView = {
         var view = UIImageView(image: UIImage(named: "flow"))
@@ -46,10 +46,6 @@ final class AccountViewController: UIViewController {
         avatarView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func setTextFieldConstraints() {
-        userName.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     @objc private func profileImageButtonTapped() {
         showImagePickerControleActionSheet()
     }
@@ -61,6 +57,7 @@ final class AccountViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        let userName = textFieldMy
         super.viewDidLoad()
         view.backgroundColor = .purple
         view.addSubview(avatarView)
@@ -70,21 +67,21 @@ final class AccountViewController: UIViewController {
         
         
         setAvatarConstraints()
-        setTextFieldConstraints()
     }
 }
 
-extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func showImagePickerControleActionSheet() {
         let actionSheet = UIAlertController(title: "PhotoSource", message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in 
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 self.schoosePicker(sourceType: .camera)
             } else {print("Camera are not available") }
-            }))
+        }))
+        
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
-                self.schoosePicker(sourceType: .photoLibrary)}))
+            self.schoosePicker(sourceType: .photoLibrary)}))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true)
     }
@@ -105,12 +102,16 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         dismiss(animated: true, completion: nil)
     }
-    
+}
+
+extension AccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         textField.endEditing(true)
         return true
     }
 }
+
 
 
 

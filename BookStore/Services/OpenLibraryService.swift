@@ -45,6 +45,17 @@ class OpenLibraryService {
         }
     }
     
+    func fetchSearch(with query:String, completion: @escaping (Result<[SearchResult], Error>) -> Void) {
+        Task {
+            do {
+                let data = try await openLibraryKit.search.search(query)
+                completion(.success(data))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     
 }
 
@@ -80,4 +91,14 @@ class OpenLibraryService {
                                         print(error.localizedDescription)
                                     }
                     }
+ 
+ openLibraryService.fetchSearch(with: "Big Boss") { result in
+     switch result {
+     case .success(let data):
+         print(data)
+     case .failure(let error):
+         print(error.localizedDescription)
+     }
+ }
+ 
 */

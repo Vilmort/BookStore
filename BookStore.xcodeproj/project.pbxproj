@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB212B21BC54006E26D0 /* OpenLibraryService.swift */; };
 		0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */; };
+		0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */; };
+		0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */; };
+		0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB282B2219C2006E26D0 /* OnboardingView.swift */; };
 		0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */; };
 		0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */; };
 		0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */; };
@@ -30,6 +33,9 @@
 /* Begin PBXFileReference section */
 		0B03FB212B21BC54006E26D0 /* OpenLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLibraryService.swift; sourceTree = "<group>"; };
 		0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
+		0B03FB282B2219C2006E26D0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B03FB252B2219C2006E26D0 /* WelcomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */,
+				0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */,
+				0B03FB282B2219C2006E26D0 /* OnboardingView.swift */,
+			);
+			path = WelcomeViewController;
+			sourceTree = "<group>";
+		};
 		0B77B4942B1BB23E007AB5BC /* CustomTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +171,7 @@
 				0B77B49E2B1BB392007AB5BC /* LikesViewController */,
 				0B77B49B2B1BB336007AB5BC /* CategoriesViewController */,
 				0B77B4972B1BB2D5007AB5BC /* HomeViewController */,
+				0B03FB252B2219C2006E26D0 /* WelcomeViewController */,
 				0B77B4942B1BB23E007AB5BC /* CustomTabBarController */,
 			);
 			path = Controllers;
@@ -263,6 +280,7 @@
 			files = (
 				0B77B4A02B1BB3BF007AB5BC /* LikesViewController.swift in Sources */,
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
+				0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
@@ -271,6 +289,8 @@
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
+				0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */,
+				0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

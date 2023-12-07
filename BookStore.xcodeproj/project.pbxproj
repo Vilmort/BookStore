@@ -23,6 +23,7 @@
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
+		FAE238E82B1E6B33004376D3 /* CardForLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE238E72B1E6B33004376D3 /* CardForLikes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF89DBE2B1BAC3900EE1525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAE238E72B1E6B33004376D3 /* CardForLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForLikes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		0BF89DC82B1BAD3500EE1525 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAE238E62B1E6AF4004376D3 /* Components */,
 				0B77B4A12B1BB3D6007AB5BC /* AccountViewController */,
 				0B77B49E2B1BB392007AB5BC /* LikesViewController */,
 				0B77B49B2B1BB336007AB5BC /* CategoriesViewController */,
@@ -169,6 +172,14 @@
 				0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FAE238E62B1E6AF4004376D3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FAE238E72B1E6B33004376D3 /* CardForLikes.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			files = (
 				0B77B4A02B1BB3BF007AB5BC /* LikesViewController.swift in Sources */,
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
+				FAE238E82B1E6B33004376D3 /* CardForLikes.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,

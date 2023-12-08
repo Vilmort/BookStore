@@ -12,6 +12,7 @@
 		0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */; };
 		0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */; };
 		0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB282B2219C2006E26D0 /* OnboardingView.swift */; };
+		0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60468B2B223474008D7834 /* CardForLikes.swift */; };
 		0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */; };
 		0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */; };
 		0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */; };
@@ -36,6 +37,7 @@
 		0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		0B03FB282B2219C2006E26D0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0B60468B2B223474008D7834 /* CardForLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardForLikes.swift; sourceTree = "<group>"; };
 		0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,15 @@
 			path = WelcomeViewController;
 			sourceTree = "<group>";
 		};
+		0B60468A2B223474008D7834 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0B60468B2B223474008D7834 /* CardForLikes.swift */,
+			);
+			name = Cell;
+			path = BookStore/Controllers/Cell;
+			sourceTree = SOURCE_ROOT;
+		};
 		0B77B4942B1BB23E007AB5BC /* CustomTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +115,7 @@
 		0B77B49E2B1BB392007AB5BC /* LikesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0B60468A2B223474008D7834 /* Cell */,
 				0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */,
 			);
 			path = LikesViewController;
@@ -286,6 +298,7 @@
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
+				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,

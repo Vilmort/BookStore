@@ -9,6 +9,7 @@ import UIKit
 
 final class AccountViewController: UIViewController {
     
+    private let defaults = UserDefaults.standard
     private let boundsX = UIScreen.main.bounds.width
     private let boundsY = UIScreen.main.bounds.height
     
@@ -28,9 +29,19 @@ final class AccountViewController: UIViewController {
         return textView
     }
     
+    func loadImage() -> UIImage {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imageUrl = documentsURL.appendingPathComponent("avatar.png")
+        guard fileManager.fileExists(atPath: imageUrl.path) else {
+            return UIImage(named: "flow")!
+        }
+        return UIImage(contentsOfFile: imageUrl.path)!
+    }
     
     private var avatarView: UIImageView = {
-        var view = UIImageView(image: UIImage(named: "flow"))
+        
+        var view = UIImageView()
         view.layer.frame.size.height = 200
         view.layer.frame.size.width = view.layer.frame.size.height
         view.layer.cornerRadius = view.bounds.height/2
@@ -58,6 +69,8 @@ final class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         let userName = textFieldMy
+        avatarView.image = loadImage()
+        userName.text = defaults.string(forKey: "username") == nil ? "" : "\(defaults.string(forKey: "username")!)"
         super.viewDidLoad()
         view.backgroundColor = .purple
         view.addSubview(avatarView)
@@ -96,18 +109,38 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            saveImage(editedImage)
             avatarView.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             avatarView.image = originalImage
+            saveImage(originalImage)
         }
         dismiss(animated: true, completion: nil)
     }
+    
+    func saveImage(_ image: UIImage) {
+        guard let data = image.pngData() else
+        {
+            return
+        }
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imageUrl = documentsURL.appendingPathComponent("avatar.png")
+        do {
+            try data.write(to: imageUrl)
+        } catch {
+            print("Ошибка сохранения изображения")
+        }
+    }
+    
 }
+
 
 extension AccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         textField.endEditing(true)
+        defaults.set(textField.text, forKey: "username")
         return true
     }
 }

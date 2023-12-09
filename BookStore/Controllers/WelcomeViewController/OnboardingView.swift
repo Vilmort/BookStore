@@ -72,11 +72,11 @@ class OnboardingView: UIView {
             onboardingImage.heightAnchor.constraint(equalToConstant: 400),
             
             logoImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            logoImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            logoImage.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
             
             onboardingTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             onboardingTextLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            onboardingTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 145)
+            onboardingTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 130)
         
         ])
     }

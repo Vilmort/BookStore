@@ -15,7 +15,7 @@ class WelcomeViewController: UIViewController {
     
     //MARK: - UI Elements
     
-    let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,9 +73,6 @@ class WelcomeViewController: UIViewController {
         
         slides = createSlides()
         setupSlidesScrollView(slides: slides)
-        
-        
-        
     }
     
     //MARK: - Private Methods
@@ -121,6 +118,13 @@ class WelcomeViewController: UIViewController {
         
         return [firstOnboardingView, secondOnboardingView, thirdOnboardingView]
     }
+    
+    private func goToHomeScreen() {
+        UserDefaults.standard.set(true, forKey: "onboardingCompleted")
+        let viewController = CustomTabBarController()
+        navigationController?.setViewControllers([viewController], animated: true)
+        navigationController?.navigationBar.isHidden = true
+    }
     //MARK: - Actions
     
     @objc private func nextSlide() {
@@ -134,7 +138,7 @@ class WelcomeViewController: UIViewController {
         
         // Прокручиваем scrollView до следующего слайда
         let xOffset = scrollView.frame.width * CGFloat(nextPageIndex)
-        scrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: xOffset, y: scrollView.contentOffset.y), animated: true)
         
         // Обновляем текущую страницу в pageControl
         pageControl.currentPage = nextPageIndex
@@ -143,18 +147,22 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func skipButtonPressed() {
-        
+        goToHomeScreen()
     }
     
     @objc private func startButtonPressed() {
-        
+        goToHomeScreen()
     }
     
     
     private func setupSlidesScrollView(slides: [OnboardingView]) {
         
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count),
-                                        height: view.frame.height)
+                                        height: scrollView.frame.height)
+       
+//        scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
+        
+        
         
         for i in 0 ..< slides.count {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i),
@@ -163,6 +171,8 @@ class WelcomeViewController: UIViewController {
                                      height: view.frame.height)
             scrollView.addSubview(slides[i])
         }
+        
+        
     }
 }
 
@@ -191,6 +201,7 @@ extension WelcomeViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
             
             skipButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),

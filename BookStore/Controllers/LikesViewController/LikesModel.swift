@@ -1,0 +1,7 @@
+//
+//  LikesModel.swift
+//
+
+import Foundation
+
+

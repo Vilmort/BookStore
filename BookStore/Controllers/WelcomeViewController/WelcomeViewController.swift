@@ -160,10 +160,6 @@ class WelcomeViewController: UIViewController {
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count),
                                         height: scrollView.frame.height)
        
-//        scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
-        
-        
-        
         for i in 0 ..< slides.count {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i),
                                      y: 0,
@@ -171,8 +167,6 @@ class WelcomeViewController: UIViewController {
                                      height: view.frame.height)
             scrollView.addSubview(slides[i])
         }
-        
-        
     }
 }
 
@@ -201,7 +195,6 @@ extension WelcomeViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            //scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
             
             skipButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -6,8 +6,17 @@
 //
 
 import UIKit
+import OpenLibraryKit
 
 class BookDescriptionViewController: UIViewController {
+    
+    private let openLibraryService = OpenLibraryService()
+    var bookId: String? {
+        didSet {
+            fetchBookDetails(id: bookId)
+        }
+            
+    }
     
     //MARK: - UI Elements
     
@@ -92,6 +101,7 @@ class BookDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         setupViews()
         setConstraints()
         
@@ -113,6 +123,27 @@ private extension BookDescriptionViewController {
         contentView.addSubview(bookDescriptionLabel)
     }
     
+    func setupUI(with data: Work) {
+        //authorNameLabel.text = data.subjectPeople
+        DispatchQueue.main.async {
+            
+            
+            self.categoryNameLabel.text = data.subjects[0]
+            //bookRatingLabel.text = data.
+            self.bookNameLabel.text = data.title
+            self.bookDescriptionLabel.text = data.bookDescription.debugDescription
+            ImageLoader.loadImage(withCoverID: "\(data.covers[0])", size: .M) { image in
+                if let myImage = image {
+                    self.bookImage.image = myImage
+                    print("Successfully loaded image")
+                } else {
+                    print("Failed to load image")
+                }
+            }
+            self.view.reloadInputViews()
+        }
+    }
+    
     func createLabel(with text: String, fontSize: CGFloat, fontWeight: UIFont.Weight) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -129,6 +160,37 @@ private extension BookDescriptionViewController {
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Classics"
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        let likeButton = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(likeButtonTapped))
+        navigationItem.rightBarButtonItem = likeButton
+    }
+
+    @objc func backButtonTapped() {
+        print("back")
+    }
+
+    @objc func likeButtonTapped() {
+        print("like")
+    }
+    //"OL45804W"
+    func fetchBookDetails(id: String?) {
+        guard let id else { return }
+        openLibraryService.fetchBookDetails(bookID: id) { result in
+                                    switch result {
+                                    case .success(let data):
+                                        self.setupUI(with: data)
+                                        
+                                        print(data)
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                    }
+                    }
     }
 }
 

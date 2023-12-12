@@ -18,9 +18,10 @@ class CustomTabBarController: UITabBarController {
     }
 
     private func generateTabBar() {
+        let vc = HomeViewController(coverLoader: ImageLoader(), openLibraryService: OpenLibraryService())
         viewControllers = [
             generateVC(
-                viewController: HomeViewController(),
+                viewController: vc,
                 title: "Home",
                 image: UIImage(named: "Home"),
                 selectedImage: UIImage(named: "HomeFill")

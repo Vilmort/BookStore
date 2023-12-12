@@ -2,12 +2,10 @@ import UIKit
 import Kingfisher
 import OpenLibraryKit
 
-final class HomeCollectionViewCell: UICollectionViewCell {
+final class TopBooksCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "HomeCollectionViewCell"
-    var cellModel: TrendingItem?
-    
-    
+
     private lazy var collectionView: UIView = {
        let collectionView = UIView()
         collectionView.layer.cornerRadius = 8
@@ -17,7 +15,7 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     
     private lazy var coverView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "mockImage")
+        imageView.image = UIImage()
         return imageView
     }()
     

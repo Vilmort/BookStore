@@ -15,7 +15,6 @@
 		0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60468B2B223474008D7834 /* CardForLikes.swift */; };
 		0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */; };
 		0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */; };
-		0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */; };
 		0B77B4A02B1BB3BF007AB5BC /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */; };
 		0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4A22B1BB3F1007AB5BC /* AccountViewController.swift */; };
 		0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */; };
@@ -32,6 +31,11 @@
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
+		24C316042B2A34670049ECB1 /* CategoriesImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C315FD2B2A34670049ECB1 /* CategoriesImagesModel.swift */; };
+		24C316052B2A34670049ECB1 /* CategoriesNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C315FE2B2A34670049ECB1 /* CategoriesNameModel.swift */; };
+		24C316062B2A34670049ECB1 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316002B2A34670049ECB1 /* CategoryCell.swift */; };
+		24C316072B2A34670049ECB1 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316022B2A34670049ECB1 /* CategoriesViewController.swift */; };
+		24C316082B2A34670049ECB1 /* BookCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316032B2A34670049ECB1 /* BookCategoryViewController.swift */; };
 		CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */; };
 		CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E332B2483A800AC6E7E /* Extension View.swift */; };
 		CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */; };
@@ -50,7 +54,6 @@
 		0B60468B2B223474008D7834 /* CardForLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardForLikes.swift; sourceTree = "<group>"; };
 		0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		0B77B4A22B1BB3F1007AB5BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -63,6 +66,11 @@
 		0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF89DBE2B1BAC3900EE1525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24C315FD2B2A34670049ECB1 /* CategoriesImagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesImagesModel.swift; sourceTree = "<group>"; };
+		24C315FE2B2A34670049ECB1 /* CategoriesNameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesNameModel.swift; sourceTree = "<group>"; };
+		24C316002B2A34670049ECB1 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		24C316022B2A34670049ECB1 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		24C316032B2A34670049ECB1 /* BookCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCategoryViewController.swift; sourceTree = "<group>"; };
 		CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB84E332B2483A800AC6E7E /* Extension View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -128,7 +136,9 @@
 		0B77B49B2B1BB336007AB5BC /* CategoriesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */,
+				24C315FF2B2A34670049ECB1 /* Cell */,
+				24C316012B2A34670049ECB1 /* Controllers */,
+				24C315FC2B2A34670049ECB1 /* Model */,
 			);
 			path = CategoriesViewController;
 			sourceTree = "<group>";
@@ -230,6 +240,32 @@
 				CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		24C315FC2B2A34670049ECB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24C315FD2B2A34670049ECB1 /* CategoriesImagesModel.swift */,
+				24C315FE2B2A34670049ECB1 /* CategoriesNameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24C315FF2B2A34670049ECB1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				24C316002B2A34670049ECB1 /* CategoryCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		24C316012B2A34670049ECB1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				24C316022B2A34670049ECB1 /* CategoriesViewController.swift */,
+				24C316032B2A34670049ECB1 /* BookCategoryViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CEB84E402B29C8D400AC6E7E /* VC */ = {
@@ -341,23 +377,27 @@
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
 				0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */,
 				CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */,
+				24C316062B2A34670049ECB1 /* CategoryCell.swift in Sources */,
+				24C316052B2A34670049ECB1 /* CategoriesNameModel.swift in Sources */,
 				0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
 				0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */,
 				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,
+				24C316072B2A34670049ECB1 /* CategoriesViewController.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
-				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */,
+				24C316082B2A34670049ECB1 /* BookCategoryViewController.swift in Sources */,
 				0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
 				CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */,
+				24C316042B2A34670049ECB1 /* CategoriesImagesModel.swift in Sources */,
 				0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */,
 				0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */,
 			);

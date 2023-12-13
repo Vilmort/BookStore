@@ -68,8 +68,25 @@ class OpenLibraryService {
         }
     }
     
+    
+    func fetchBookCellInfo(with id: String ,completion: @escaping (Result<BookModel, Error>) -> Void) {
+        Task {
+            do {
+                let data = try await bookCellInfo(id: id)
+                completion(.success(data))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     private func trendingLimit10(_ target: TrendingCategory, limit: Int) async throws -> TrendingList {
       let urlString = "https://openlibrary.org/trending/\(target.rawValue).json?limit=\(limit)"
+      return try await networkManager.request(urlString: urlString)
+    }
+    
+    private func bookCellInfo(id: String) async throws -> BookModel {
+      let urlString = "https://openlibrary.org/works/\(id).json"
       return try await networkManager.request(urlString: urlString)
     }
 
@@ -126,5 +143,14 @@ class OpenLibraryService {
          print(error.localizedDescription)
      }
  }
+ 
+ openLibraryService?.fetchBookCellInfo(with: "OL45804W", completion: { result in
+         switch result {
+         case .success(let data):
+             print(data)
+         case .failure(let error):
+             print(error.localizedDescription)
+         }
+ })
  
 */

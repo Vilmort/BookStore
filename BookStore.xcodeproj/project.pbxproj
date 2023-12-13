@@ -27,6 +27,7 @@
 		0B77B4B52B1BCA6C007AB5BC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4B42B1BCA6C007AB5BC /* RealmSwift */; };
 		0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */; };
 		0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76E2B2A1BF000C481C4 /* JASON.swift */; };
+		0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA7702B2A238400C481C4 /* BookModel.swift */; };
 		0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */; };
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0BCEA76E2B2A1BF000C481C4 /* JASON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JASON.swift; sourceTree = "<group>"; };
+		0BCEA7702B2A238400C481C4 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		0BF89DAF2B1BAC3700EE1525 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */,
 				0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */,
 				0BCEA76E2B2A1BF000C481C4 /* JASON.swift */,
+				0BCEA7702B2A238400C481C4 /* BookModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */,
+				0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
 				CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */,

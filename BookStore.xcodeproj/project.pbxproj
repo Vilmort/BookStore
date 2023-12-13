@@ -39,6 +39,7 @@
 		CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */; };
 		CEB84E3D2B289CE500AC6E7E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CEB84E3C2B289CE500AC6E7E /* ProgressHUD */; };
 		CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */; };
+		FA00340F2B2A361700DE7309 /* LikesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00340E2B2A361700DE7309 /* LikesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		FA00340E2B2A361700DE7309 /* LikesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				0B60468A2B223474008D7834 /* Cell */,
 				0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */,
+				FA00340E2B2A361700DE7309 /* LikesModel.swift */,
 			);
 			path = LikesViewController;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
+				FA00340F2B2A361700DE7309 /* LikesModel.swift in Sources */,
 				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,

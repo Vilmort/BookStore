@@ -11,7 +11,8 @@ import OpenLibraryKit
 class OpenLibraryService {
     
     private let openLibraryKit = OpenLibraryKit()
-    
+    private let networkManager = NetworkManager()
+
     func fetchTrendingBooks(sortBy category: TrendingCategory,completion: @escaping (Result<[TrendingItem], Error>) -> Void) {
         Task {
             do {
@@ -56,7 +57,22 @@ class OpenLibraryService {
         }
     }
     
+    func fetchTrendingLimit10(sortBy category: TrendingCategory, limit: Int,completion: @escaping (Result<TrendingList, Error>) -> Void) {
+        Task {
+            do {
+                let data = try await trendingLimit10(.daily, limit: limit)
+                completion(.success(data))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
     
+    private func trendingLimit10(_ target: TrendingCategory, limit: Int) async throws -> TrendingList {
+      let urlString = "https://openlibrary.org/trending/\(target.rawValue).json?limit=\(limit)"
+      return try await networkManager.request(urlString: urlString)
+    }
+
 }
 
 //MARK: - How to Fetch Data
@@ -93,6 +109,16 @@ class OpenLibraryService {
                     }
  
  openLibraryService.fetchSearch(with: "Big Boss") { result in
+     switch result {
+     case .success(let data):
+         print(data)
+     case .failure(let error):
+         print(error.localizedDescription)
+     }
+ }
+ 
+ 
+ openLibraryService?.fetchTrendingLimit10(sortBy: .weekly, limit: 1) { result in
      switch result {
      case .success(let data):
          print(data)

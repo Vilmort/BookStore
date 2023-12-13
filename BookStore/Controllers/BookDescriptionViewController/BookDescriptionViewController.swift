@@ -10,6 +10,8 @@ import OpenLibraryKit
 
 class BookDescriptionViewController: UIViewController {
     
+    private var isLiked = false
+    
     private let openLibraryService = OpenLibraryService()
     var bookId: String? {
         didSet {
@@ -100,9 +102,18 @@ class BookDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isLiked = UserDefaults.standard.bool(forKey: "isLiked")
+    
+            if isLiked {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            } else {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+            }
         setupNavigationBar()
         setupViews()
         setConstraints()
+        
         
     }
 }
@@ -173,12 +184,19 @@ private extension BookDescriptionViewController {
     }
     
     @objc func likeButtonTapped() {
-        guard let likeButton = navigationItem.rightBarButtonItem else { return }
-        if likeButton.image == UIImage(systemName: "heart") {
-            likeButton.image = UIImage(systemName: "heart.fill")
+        
+        isLiked = !isLiked
+        
+        UserDefaults.standard.set(isLiked, forKey: "isLiked")
+        
+        if isLiked {
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+//            UserDefaults.standard.set(false, forKey: "isLiked")
         } else {
-            likeButton.image = UIImage(systemName: "heart")
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+//            UserDefaults.standard.set(true, forKey: "isLiked")
         }
+        
         print("like")
     }
     //"OL45804W"

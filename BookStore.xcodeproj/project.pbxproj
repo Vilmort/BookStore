@@ -29,9 +29,13 @@
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
-		CEB84E322B24832C00AC6E7E /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E312B24832C00AC6E7E /* HomeCollectionViewCell.swift */; };
+		CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */; };
 		CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E332B2483A800AC6E7E /* Extension View.swift */; };
 		CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */; };
+		CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */; };
+		CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */; };
+		CEB84E3D2B289CE500AC6E7E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CEB84E3C2B289CE500AC6E7E /* ProgressHUD */; };
+		CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,9 +57,12 @@
 		0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF89DBE2B1BAC3900EE1525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEB84E312B24832C00AC6E7E /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB84E332B2483A800AC6E7E /* Extension View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBooksCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBooksCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B77B4B52B1BCA6C007AB5BC /* RealmSwift in Frameworks */,
+				CEB84E3D2B289CE500AC6E7E /* ProgressHUD in Frameworks */,
 				0B77B4B02B1BCA47007AB5BC /* Kingfisher in Frameworks */,
 				0B77B4AD2B1BC8B2007AB5BC /* OpenLibraryKit in Frameworks */,
 				0B77B4A82B1BC5D5007AB5BC /* SnapKit in Frameworks */,
@@ -106,7 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */,
-				CEB84E312B24832C00AC6E7E /* HomeCollectionViewCell.swift */,
+				CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */,
+				CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */,
+				CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */,
 				CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */,
 			);
 			path = HomeViewController;
@@ -211,6 +221,7 @@
 			children = (
 				CEB84E332B2483A800AC6E7E /* Extension View.swift */,
 				0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */,
+				CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 				0B77B4AF2B1BCA47007AB5BC /* Kingfisher */,
 				0B77B4B22B1BCA6C007AB5BC /* Realm */,
 				0B77B4B42B1BCA6C007AB5BC /* RealmSwift */,
+				CEB84E3C2B289CE500AC6E7E /* ProgressHUD */,
 			);
 			productName = BookStore;
 			productReference = 0BF89DAF2B1BAC3700EE1525 /* BookStore.app */;
@@ -272,6 +284,7 @@
 				0B77B4AB2B1BC8B2007AB5BC /* XCRemoteSwiftPackageReference "OpenLibraryKit" */,
 				0B77B4AE2B1BCA47007AB5BC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0B77B4B12B1BCA6C007AB5BC /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CEB84E3B2B289CE500AC6E7E /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 0BF89DB02B1BAC3700EE1525 /* Products */;
 			projectDirPath = "";
@@ -302,15 +315,18 @@
 				0B77B4A02B1BB3BF007AB5BC /* LikesViewController.swift in Sources */,
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
 				0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */,
+				CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
-				CEB84E322B24832C00AC6E7E /* HomeCollectionViewCell.swift in Sources */,
+				CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */,
+				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
 				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
+				CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
 				CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */,
@@ -570,6 +586,14 @@
 				kind = branch;
 			};
 		};
+		CEB84E3B2B289CE500AC6E7E /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -602,6 +626,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B77B4B12B1BCA6C007AB5BC /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		CEB84E3C2B289CE500AC6E7E /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB84E3B2B289CE500AC6E7E /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

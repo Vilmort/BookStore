@@ -19,10 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        //window?.rootViewController = WelcomeViewController()
         if onboardingCompleted() {
             let tabBarController = CustomTabBarController()
             let navigationController = UINavigationController(rootViewController: tabBarController)
+//            let bookDescriptionVC = BookDescriptionViewController()
+//            let navigationController = UINavigationController(rootViewController: bookDescriptionVC)
+            navigationController.navigationBar.tintColor = .black
             window?.rootViewController = navigationController
             navigationController.navigationBar.isHidden = true
         } else {

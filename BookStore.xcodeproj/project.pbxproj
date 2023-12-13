@@ -29,6 +29,11 @@
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
+		24662EEE2B2A2A03003E97ED /* CategoriesNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24662EED2B2A2A03003E97ED /* CategoriesNameModel.swift */; };
+		24662EF02B2A2D63003E97ED /* CategoriesImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24662EEF2B2A2D63003E97ED /* CategoriesImagesModel.swift */; };
+		24662EF22B2A2EB8003E97ED /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24662EF12B2A2EB8003E97ED /* CategoryCell.swift */; };
+		247967C52B26452C005514EE /* CategoriesBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247967C42B26452C005514EE /* CategoriesBooks.swift */; };
+		24B954DE2B28F83100CD1EA6 /* BookCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B954DD2B28F83100CD1EA6 /* BookCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF89DBE2B1BAC3900EE1525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24662EED2B2A2A03003E97ED /* CategoriesNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesNameModel.swift; sourceTree = "<group>"; };
+		24662EEF2B2A2D63003E97ED /* CategoriesImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesImagesModel.swift; sourceTree = "<group>"; };
+		24662EF12B2A2EB8003E97ED /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		247967C42B26452C005514EE /* CategoriesBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesBooks.swift; sourceTree = "<group>"; };
+		24B954DD2B28F83100CD1EA6 /* BookCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,11 @@
 			isa = PBXGroup;
 			children = (
 				0B77B49C2B1BB367007AB5BC /* CategoriesViewController.swift */,
+				24B954DD2B28F83100CD1EA6 /* BookCategoryViewController.swift */,
+				247967C42B26452C005514EE /* CategoriesBooks.swift */,
+				24662EED2B2A2A03003E97ED /* CategoriesNameModel.swift */,
+				24662EEF2B2A2D63003E97ED /* CategoriesImagesModel.swift */,
+				24662EF12B2A2EB8003E97ED /* CategoryCell.swift */,
 			);
 			path = CategoriesViewController;
 			sourceTree = "<group>";
@@ -291,19 +306,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B77B4A02B1BB3BF007AB5BC /* LikesViewController.swift in Sources */,
+				24662EF22B2A2EB8003E97ED /* CategoryCell.swift in Sources */,
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
+				24662EEE2B2A2A03003E97ED /* CategoriesNameModel.swift in Sources */,
 				0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				0B77B49D2B1BB367007AB5BC /* CategoriesViewController.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
+				247967C52B26452C005514EE /* CategoriesBooks.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
+				24662EF02B2A2D63003E97ED /* CategoriesImagesModel.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
 				0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */,
 				0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */,
+				24B954DE2B28F83100CD1EA6 /* BookCategoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,4 @@
 import UIKit
-import Kingfisher
-import OpenLibraryKit
 
 final class TopBooksCollectionViewCell: UICollectionViewCell {
     

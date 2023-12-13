@@ -4,20 +4,21 @@ import Kingfisher
 
 final class HomeViewController: UIViewController {
     
-    private var searchText: String = ""
+    private (set) var searchText: String = ""
     private var coverLoader: ImageLoader?
     private var openLibraryService: OpenLibraryService?
     private var trendingBooks: [TrendingItem] = []
     private var searchingBooks: [SearchResult] = []
-    private var sortButtonNames = ["This week", "This Month", "This Year"]
-    private var images: [UIImage] = []
+    private var sortButtonNames = ["This Week", "This Month", "This Year"]
+    private (set) var images: [UIImage] = []
+    let index : IndexPath = IndexPath(index: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addView()
         applyConstraints()
-        sortByNow()
+        sortByWeekly()
     }
     
     init(coverLoader: ImageLoader, openLibraryService: OpenLibraryService) {
@@ -35,7 +36,7 @@ final class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
+        collectionView.register(TopBooksCollectionViewCell.self, forCellWithReuseIdentifier: TopBooksCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -46,7 +47,7 @@ final class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
+        collectionView.register(RecentBooksCollectionViewCell.self, forCellWithReuseIdentifier: RecentBooksCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -58,7 +59,7 @@ final class HomeViewController: UIViewController {
         textfield.text = ""
         textfield.font = UIFont.systemFont(ofSize: 16)
         textfield.textColor = .black
-        textfield.placeholder = "Поиск"
+        textfield.placeholder = "Type somethings"
         textfield.delegate = self
         textfield.isEnabled = true
         textfield.addTarget(self, action: #selector(textFieldChanged), for: .editingDidEnd)
@@ -113,20 +114,59 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
+    private lazy var searchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Search books:"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.isHidden = true
+        return label
+    }()
+    
+    private lazy var searchBookCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SearchBooksCollectionViewCell.self, forCellWithReuseIdentifier: SearchBooksCollectionViewCell.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isHidden = true
+        return collectionView
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .black
+        button.isHidden = true
+        button.addTarget(self, action: #selector(backTapButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var plugImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "searchError")
+        image.isHidden = true
+        return image
+    }()
+    
     private func downloadCover(coverId: String) {
-        ImageLoader.loadImage(withCoverID: coverId, size: .S) {
-            image in
-            if let image = image {
-                self.images.append(image)
-                print(self.images)
-            } else {
-                print("Failed to load image")
+        ImageLoader.loadImage(withCoverID: coverId, size: .S) { [weak self] image in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                if let image = image {
+                    self.images.append(image)
+                    print(self.images)
+                } else {
+                    print("Failed to load image")
+                }
             }
         }
     }
     
-    private func sortByNow() {
-        openLibraryService?.fetchTrendingBooks(sortBy: .now) { [weak self] result in
+    private func sortByWeekly() {
+        UIBlockingProgressHUD.show()
+        openLibraryService?.fetchTrendingBooks(sortBy: .weekly) { [weak self] result in
             guard let self else { return}
             DispatchQueue.main.async {
                 switch result {
@@ -134,39 +174,120 @@ final class HomeViewController: UIViewController {
                     self.trendingBooks = books
                     self.topBooksCollectionView.reloadData()
                 case let .failure(error):
+                    UIBlockingProgressHUD.dismiss()
                     print(error)
                 }
+                UIBlockingProgressHUD.dismiss()
             }
-            
         }
     }
     
+    private func sortByMothly() {
+        UIBlockingProgressHUD.show()
+        openLibraryService?.fetchTrendingBooks(sortBy: .monthly) { [weak self] result in
+            guard let self else { return}
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(books):
+                    self.trendingBooks = books
+                    self.topBooksCollectionView.reloadData()
+                case let .failure(error):
+                    UIBlockingProgressHUD.dismiss()
+                    print(error)
+                }
+                UIBlockingProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    private func sortByYearly() {
+        UIBlockingProgressHUD.show()
+        openLibraryService?.fetchTrendingBooks(sortBy: .yearly) { [weak self] result in
+            guard let self else { return}
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(books):
+                    self.trendingBooks = books
+                    self.topBooksCollectionView.reloadData()
+                case let .failure(error):
+                    UIBlockingProgressHUD.dismiss()
+                    print(error)
+                }
+                UIBlockingProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    
     @objc func textFieldChanged() {
         searchText = searchBooksField.text ?? ""
+        UIBlockingProgressHUD.show()
         openLibraryService?.fetchSearch(with: searchText) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case let .success(data):
-                    self.searchingBooks = data
-                    print(data)
+                    if self.searchingBooks.isEmpty {
+                        self.plugImage.isHidden = false
+                        self.hideUI()
+                        UIBlockingProgressHUD.dismiss()
+                    } else {
+                        self.searchingBooks = data
+                        print(data)
+                        self.hideUI()
+                        self.searchBookCollection.reloadData()
+                        UIBlockingProgressHUD.dismiss()
+                    }
                 case let .failure(error):
                     print(error)
+                    UIBlockingProgressHUD.dismiss()
                 }
             }
-            
         }
     }
     
+    @objc func backTapButton() {
+        print("tap")
+        showUI()
+    }
+    
+    private func hideUI() {
+        [topBooksTitle, topBooksSeeMoreLabel, topBooksCollectionView, recentLabel, recentBooksCollectionView, recentBooksSeeMoreLabel, buttonCollection].forEach { view in
+            view.isHidden = true
+        }
+        searchLabel.isHidden = false
+        searchBookCollection.isHidden = false
+        backButton.isHidden = false
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchLabel.topAnchor.constraint(equalTo: searchBooksField.bottomAnchor, constant: 20),
+            searchBookCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchBookCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchBookCollection.topAnchor.constraint(equalTo: searchLabel.topAnchor, constant: 35),
+            searchBookCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
+    }
+    
+    private func showUI() {
+        [topBooksTitle, topBooksSeeMoreLabel, topBooksCollectionView, recentLabel, recentBooksCollectionView, recentBooksSeeMoreLabel, buttonCollection].forEach { view in
+            view.isHidden = false
+        }
+        searchLabel.isHidden = true
+        searchBookCollection.isHidden = true
+        backButton.isHidden = true
+    }
+    
     private func addView() {
-        [searchBooksField, searchButton, topBooksTitle, topBooksSeeMoreLabel, topBooksCollectionView, recentLabel, recentBooksSeeMoreLabel, recentBooksCollectionView, buttonCollection].forEach(view.setupView(_:))
+        [searchBooksField, searchButton, topBooksTitle, topBooksSeeMoreLabel, topBooksCollectionView, recentLabel, recentBooksSeeMoreLabel, recentBooksCollectionView, buttonCollection, searchLabel, searchBookCollection, backButton, plugImage].forEach(view.setupView(_:))
     }
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
             searchBooksField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             searchBooksField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor),
-            searchBooksField.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
+            searchBooksField.topAnchor.constraint(equalTo: view.topAnchor, constant: 115),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchButton.centerYAnchor.constraint(equalTo: searchBooksField.centerYAnchor),
             topBooksTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -182,13 +303,15 @@ final class HomeViewController: UIViewController {
             topBooksCollectionView.topAnchor.constraint(equalTo: topBooksTitle.bottomAnchor, constant: 65),
             topBooksCollectionView.bottomAnchor.constraint(equalTo: recentLabel.topAnchor, constant: -15),
             recentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            recentLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 445),
+            recentLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 480),
             recentBooksSeeMoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             recentBooksSeeMoreLabel.centerYAnchor.constraint(equalTo: recentLabel.centerYAnchor),
             recentBooksCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             recentBooksCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             recentBooksCollectionView.topAnchor.constraint(equalTo: recentLabel.bottomAnchor, constant: 20),
-            recentBooksCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+            recentBooksCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            plugImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            plugImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -330),
         ])
     }
 }
@@ -202,6 +325,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return 3
         } else if collectionView == self.buttonCollection {
             return 3
+        } else if collectionView == self.searchBookCollection{
+            return searchingBooks.count
         } else {
             return 0
         }
@@ -210,23 +335,29 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case topBooksCollectionView:
-            let topCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopBooksCollectionViewCell.identifier, for: indexPath) as? TopBooksCollectionViewCell
             let model = trendingBooks[indexPath.row]
-            downloadCover(coverId: "\(String(describing: model.coverId))")
+            //let images = images[indexPath.row]
+            //downloadCover(coverId: "\(String(describing: model.coverId))")
             guard let image = UIImage(named: "mockImage") else { return UICollectionViewCell() }
-            topCell?.configureCell(title: model.title,
-                                   author: model.authorNames?[0] ?? "Unknown",
-                                   genre: "Classics",
-                                   image: image )
-            return topCell ?? UICollectionViewCell()
+            cell?.configureCell(title: model.title,
+                                author: model.authorNames?[0] ?? "Unknown",
+                                genre: "Classics",
+                                image: image )
+            return cell ?? UICollectionViewCell()
         case recentBooksCollectionView:
-            let recentCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath)
+            let recentCell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentBooksCollectionViewCell.identifier, for: indexPath)
             return recentCell
         case buttonCollection:
-            guard let buttonCell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.identifier, for: indexPath) as? ButtonCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.identifier, for: indexPath) as? ButtonCollectionViewCell else { return UICollectionViewCell() }
             let model = sortButtonNames[indexPath.row]
-            buttonCell.configure(title: model)
-            return buttonCell
+            cell.configure(title: model)
+            return cell
+        case searchBookCollection:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchBooksCollectionViewCell.identifier, for: indexPath) as? SearchBooksCollectionViewCell
+            let model = searchingBooks[indexPath.row]
+            cell?.configureCell(title: model.title, author: model.authors?[0] ?? "Unknown", genre: "Classics")
+            return cell ?? UICollectionViewCell()
         default:
             return UICollectionViewCell()
         }
@@ -239,35 +370,55 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     ) -> CGSize {
         
         switch collectionView {
-            case topBooksCollectionView:
+        case topBooksCollectionView:
             return CGSize(width: collectionView.bounds.width / 2, height: collectionView.bounds.height)
         case recentBooksCollectionView:
             return CGSize(width: collectionView.bounds.width / 2, height: collectionView.bounds.height)
         case buttonCollection:
             return CGSize(width: collectionView.bounds.width / 3 - 10, height: collectionView.bounds.height)
+        case searchBookCollection:
+            return CGSize(width: collectionView.bounds.width / 2.4 + 23, height: collectionView.bounds.height / 2.5 + 10)
         default:
             return CGSize()
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
+        case topBooksCollectionView:
+            return 10
+        case recentBooksCollectionView:
+            return 10
+        case searchBookCollection:
+            return 10
+        case buttonCollection:
+            return 10
+        default:
+            return 0
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ButtonCollectionViewCell else { return }
-        cell.selectedCell()
+        switch indexPath {
+        case IndexPath(row: 0, section: 0):
+            sortByWeekly()
+            cell.selectedCell()
+        case IndexPath(row: 1, section: 0):
+            cell.selectedCell()
+            sortByMothly()
+        case IndexPath(row: 2, section: 0):
+            cell.selectedCell()
+            sortByYearly()
+        default: break
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ButtonCollectionViewCell else { return }
         cell.deselectedCell()
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        if let cell = buttonCollection.cellForItem(at: IndexPath(row: 0, section: 0)) as? ButtonCollectionViewCell {
-//            cell.selectedCell()
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
 }
 
 extension HomeViewController: UITextFieldDelegate {
@@ -284,7 +435,7 @@ extension HomeViewController: UITextFieldDelegate {
         if searchBooksField.text != "" {
             return true
         } else {
-            searchBooksField.placeholder = "Поиск"
+            searchBooksField.placeholder = "Type somethings"
             return false
         }
     }
@@ -294,6 +445,7 @@ extension HomeViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField){
+        
     }
 }
 

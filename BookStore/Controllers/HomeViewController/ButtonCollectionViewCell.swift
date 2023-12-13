@@ -1,7 +1,12 @@
 import UIKit
 
+protocol ButtonCollectionViewCellDelegate: AnyObject {
+    
+}
+
 final class ButtonCollectionViewCell: UICollectionViewCell {
     static let identifier = "ButtonCollectionViewCell"
+    public weak var delegate: ButtonCollectionViewCellDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -10,7 +10,9 @@ final class UIBlockingProgressHUD {
 
     static func show() {
         window?.isUserInteractionEnabled = false
-        ProgressHUD.show()
+        ProgressHUD.colorAnimation = .black
+        ProgressHUD.animationType = .dualDotSidestep
+        ProgressHUD.animate()
     }
 
     static func dismiss() {

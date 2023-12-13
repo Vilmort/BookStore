@@ -25,6 +25,8 @@
 		0B77B4B02B1BCA47007AB5BC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4AF2B1BCA47007AB5BC /* Kingfisher */; };
 		0B77B4B32B1BCA6C007AB5BC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4B22B1BCA6C007AB5BC /* Realm */; };
 		0B77B4B52B1BCA6C007AB5BC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4B42B1BCA6C007AB5BC /* RealmSwift */; };
+		0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */; };
+		0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76E2B2A1BF000C481C4 /* JASON.swift */; };
 		0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */; };
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 		0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		0B77B4A22B1BB3F1007AB5BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0BCEA76E2B2A1BF000C481C4 /* JASON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JASON.swift; sourceTree = "<group>"; };
 		0BF89DAF2B1BAC3700EE1525 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 			children = (
 				0B03FB212B21BC54006E26D0 /* OpenLibraryService.swift */,
 				0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */,
+				0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */,
+				0BCEA76E2B2A1BF000C481C4 /* JASON.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -316,7 +322,9 @@
 				0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */,
 				0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */,
 				CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */,
+				0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
+				0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */,
 				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,

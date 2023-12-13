@@ -15,7 +15,7 @@ class BookDescriptionViewController: UIViewController {
         didSet {
             fetchBookDetails(id: bookId)
         }
-            
+        
     }
     
     //MARK: - UI Elements
@@ -29,7 +29,6 @@ class BookDescriptionViewController: UIViewController {
     
     private let contentView: UIView = {
         let contentView = UIView()
-        
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -126,8 +125,6 @@ private extension BookDescriptionViewController {
     func setupUI(with data: Work) {
         //authorNameLabel.text = data.subjectPeople
         DispatchQueue.main.async {
-            
-            
             self.categoryNameLabel.text = data.subjects[0]
             //bookRatingLabel.text = data.
             self.bookNameLabel.text = data.title
@@ -170,11 +167,11 @@ private extension BookDescriptionViewController {
         let likeButton = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(likeButtonTapped))
         navigationItem.rightBarButtonItem = likeButton
     }
-
+    
     @objc func backButtonTapped() {
         print("back")
     }
-
+    
     @objc func likeButtonTapped() {
         print("like")
     }
@@ -182,15 +179,15 @@ private extension BookDescriptionViewController {
     func fetchBookDetails(id: String?) {
         guard let id else { return }
         openLibraryService.fetchBookDetails(bookID: id) { result in
-                                    switch result {
-                                    case .success(let data):
-                                        self.setupUI(with: data)
-                                        
-                                        print(data)
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                    }
-                    }
+            switch result {
+            case .success(let data):
+                self.setupUI(with: data)
+                
+                print(data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

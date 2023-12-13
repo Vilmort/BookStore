@@ -2,7 +2,7 @@ import UIKit
 
 final class TopBooksCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "HomeCollectionViewCell"
+    static let identifier = "TopBooksCollectionViewCell"
 
     private lazy var collectionView: UIView = {
        let collectionView = UIView()

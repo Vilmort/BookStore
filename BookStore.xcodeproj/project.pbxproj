@@ -113,11 +113,8 @@
 		0B77B4972B1BB2D5007AB5BC /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */,
-				CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */,
-				CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */,
-				CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */,
-				CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */,
+				CEB84E402B29C8D400AC6E7E /* VC */,
+				CEB84E412B29C8EF00AC6E7E /* Cell */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -224,6 +221,25 @@
 				CEB84E3E2B289D4900AC6E7E /* UIBlockingProgressHUD.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEB84E402B29C8D400AC6E7E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		CEB84E412B29C8EF00AC6E7E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */,
+				CEB84E372B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift */,
+				CEB84E392B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift */,
+				CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

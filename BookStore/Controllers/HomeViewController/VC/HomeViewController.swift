@@ -4,21 +4,20 @@ import Kingfisher
 
 final class HomeViewController: UIViewController {
     
-    private (set) var searchText: String = ""
     private var coverLoader: ImageLoader?
     private var openLibraryService: OpenLibraryService?
     private var trendingBooks: [TrendingItem] = []
     private var searchingBooks: [SearchResult] = []
     private var sortButtonNames = ["This Week", "This Month", "This Year"]
     private (set) var images: [UIImage] = []
-    let index : IndexPath = IndexPath(index: 0)
+    private (set) var searchText: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addView()
         applyConstraints()
-        sortByWeekly()
+        sortByNow()
     }
     
     init(coverLoader: ImageLoader, openLibraryService: OpenLibraryService) {
@@ -69,6 +68,7 @@ final class HomeViewController: UIViewController {
     private lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "searchLogo"), for: .normal)
+        button.addTarget(self, action: #selector(textFieldChanged), for: .touchUpInside)
         return button
     }()
     
@@ -218,6 +218,25 @@ final class HomeViewController: UIViewController {
         }
     }
     
+    private func sortByNow() {
+        UIBlockingProgressHUD.show()
+        openLibraryService?.fetchTrendingBooks(sortBy: .now) { [weak self] result in
+            guard let self else { return}
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(books):
+                    self.trendingBooks = books
+                    self.topBooksCollectionView.reloadData()
+                case let .failure(error):
+                    UIBlockingProgressHUD.dismiss()
+                    print(error)
+                }
+                UIBlockingProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    
     
     @objc func textFieldChanged() {
         searchText = searchBooksField.text ?? ""
@@ -227,13 +246,15 @@ final class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case let .success(data):
+                    self.searchingBooks = data
+                    print(data)
                     if self.searchingBooks.isEmpty {
                         self.plugImage.isHidden = false
                         self.hideUI()
                         UIBlockingProgressHUD.dismiss()
                     } else {
-                        self.searchingBooks = data
                         print(data)
+                        self.plugImage.isHidden = true
                         self.hideUI()
                         self.searchBookCollection.reloadData()
                         UIBlockingProgressHUD.dismiss()
@@ -241,10 +262,10 @@ final class HomeViewController: UIViewController {
                 case let .failure(error):
                     print(error)
                     UIBlockingProgressHUD.dismiss()
+                    }
                 }
             }
         }
-    }
     
     @objc func backTapButton() {
         print("tap")
@@ -277,6 +298,7 @@ final class HomeViewController: UIViewController {
         searchLabel.isHidden = true
         searchBookCollection.isHidden = true
         backButton.isHidden = true
+        plugImage.isHidden = true
     }
     
     private func addView() {

@@ -6,11 +6,7 @@ import SnapKit
 import Foundation
 
 class CardForLikes: UITableViewCell {
-    
-        var category: String?
-        var title: String?
-        var author: String?
-        var coverImage: UIImage?
+    var deleteAction: (() -> Void)?
     
     private var cardData: BookModel?
     private let delButton: UIButton = {
@@ -26,6 +22,7 @@ class CardForLikes: UITableViewCell {
         rectView.backgroundColor = .black
         rectView.layer.cornerRadius = 10
         rectView.layer.masksToBounds = true
+        
         return rectView
     }()
     
@@ -33,6 +30,7 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.italicSystemFont(ofSize: 10)
         label.textColor = .white
+        
         return label
     }()
     
@@ -40,6 +38,7 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
+        
         return label
     }()
     
@@ -47,17 +46,20 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
+        
         return label
     }()
     
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        
         return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupLayout()
     }
     
@@ -76,15 +78,27 @@ class CardForLikes: UITableViewCell {
         rectView.addSubview(categoryLabel)
         
         rectView.snp.makeConstraints { make in
-            make.height.equalTo(coverImageView)
-            
+            make.height.equalTo(140)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        coverImageView.snp.makeConstraints { make in
+            make.height.equalTo(rectView.snp.height)
+            make.width.equalTo(100)
+            make.leading.equalToSuperview()
+        }
+        
+        delButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.width.equalTo(20)
         }
         
         categoryLabel.snp.makeConstraints { make in
             make.leading.equalTo(coverImageView.snp.trailing).offset(8)
             make.top.equalToSuperview().offset(8)
+            make.trailing.equalTo(delButton.snp.leading).offset(-8)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -92,24 +106,18 @@ class CardForLikes: UITableViewCell {
             make.top.equalTo(categoryLabel.snp.bottom).offset(4)
             make.trailing.equalTo(categoryLabel)
         }
-        
+       
         authorLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.trailing.equalTo(titleLabel)
         }
-        
-        coverImageView.snp.makeConstraints { make in
-            make.top.leading.bottom.equalToSuperview()
-            
-        }
-        
-        delButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.width.equalTo(20)
-        }
     }
+  
+    func configure(title: String, image: UIImage, subjects: String) {
+        titleLabel.text = title
+        coverImageView.image = image
+        authorLabel.text = subjects
+    }
+    
 }
-
-

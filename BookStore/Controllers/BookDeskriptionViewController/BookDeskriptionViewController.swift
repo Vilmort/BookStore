@@ -11,13 +11,23 @@ import OpenLibraryKit
 class BookDescriptionViewController: UIViewController {
     
     private var isLiked = false
-    
+    private let likedService = LikeService.shared
     private let openLibraryService = OpenLibraryService()
-    var bookId: String? {
-        didSet {
-            fetchBookDetails(id: bookId)
-        }
-        
+    var bookId: String
+
+    //MARK: - init
+    init(bookId: String) {
+        self.bookId = bookId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.bookId = ""
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - UI Elements
@@ -76,7 +86,7 @@ class BookDescriptionViewController: UIViewController {
     }()
     
     private lazy var bookDescriptionLabel: UILabel = {
-        let label = createLabel(with: "Some book description: Oscar Wilde's only novel is the dreamlike story of a young man who sells his soul for eternal youth and beauty. In this celebrated work Wilde forged a devastating portrait of the effects of evil and debauchery on a young aesthete in late-19th-century England. Combining elements of the Gothic horror novel and decadent French fiction, the book centers on a striking premise: As Dorian Gray sinks into a life of crime and gross sensuality, his body retains perfect youth and vigor while his recently painted portrait grows day by day into a hideous record of evil, which he Oscar Wilde's only novel is the dreamlike story of a young man who sells his soul for eternal youth and beauty. In this celebrated work Wilde forged a devastating portrait of the effects of evil and debauchery on a young aesthete in late-19th-century England. Combining elements of the Gothic horror novel and decadent French fiction, the book centers on a striking premise: As Dorian Gray sinks into a life of crime and gross sensuality, his body retains perfect youth and vigor while his recently painted portrait grows day by day into a hideous record of evil, which he Oscar Wilde's only novel is the dreamlike story of a young man who sells his soul for eternal youth and beauty. In this celebrated work Wilde forged a devastating portrait of the effects of evil and debauchery on a young aesthete in late-19th-century England. Combining elements of the Gothic horror novel and decadent French fiction, the book centers on a striking premise: As Dorian Gray sinks into a life of crime and gross sensuality, his body retains perfect youth and vigor while his recently painted portrait grows day by day into a hideous record of evil, which he", fontSize: 16, fontWeight: .regular)
+        let label = createLabel(with: "", fontSize: 16, fontWeight: .regular)
         
         label.setContentHuggingPriority(.required, for: .vertical)
         return label
@@ -102,19 +112,11 @@ class BookDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        isLiked = UserDefaults.standard.bool(forKey: "isLiked")
-    
-            if isLiked {
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-            } else {
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-            }
+        likeButtonCheck()
+        fetchBookDetails(id: bookId)
         setupNavigationBar()
         setupViews()
         setConstraints()
-        
-        
     }
 }
 
@@ -172,33 +174,39 @@ private extension BookDescriptionViewController {
     
     func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
+        navigationController?.tabBarController?.tabBar.isHidden = true
         navigationItem.title = "Classics"
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = backButton
+//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+//        navigationItem.leftBarButtonItem = backButton
         let likeButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(likeButtonTapped))
         navigationItem.rightBarButtonItem = likeButton
     }
     
-    @objc func backButtonTapped() {
-        print("back")
+//    @objc func backButtonTapped() {
+//        print("back")
+//    }
+//    
+    
+    private func likeButtonCheck() {
+        isLiked = likedService.ifElementLiked(bookId)
+            if isLiked {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+            } else {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            }
     }
     
     @objc func likeButtonTapped() {
-        
-        isLiked = !isLiked
-        
-        UserDefaults.standard.set(isLiked, forKey: "isLiked")
-        
+        isLiked = likedService.ifElementLiked(bookId)
         if isLiked {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-//            UserDefaults.standard.set(false, forKey: "isLiked")
+            likedService.removeElement(bookId)
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-//            UserDefaults.standard.set(true, forKey: "isLiked")
+            likedService.appendElement(bookId)
         }
-        
-        print("like")
     }
+    
     //"OL45804W"
     func fetchBookDetails(id: String?) {
         guard let id else { return }

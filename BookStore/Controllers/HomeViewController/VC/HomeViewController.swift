@@ -11,13 +11,31 @@ final class HomeViewController: UIViewController {
     private var sortButtonNames = ["This Week", "This Month", "This Year"]
     private (set) var images: [UIImage] = []
     private (set) var searchText: String = ""
+    var t: MyTrendingModel?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.tabBarController?.tabBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addView()
         applyConstraints()
-        sortByNow()
+//        sortByNow()
+        
+        openLibraryService?.fetchTrendingLimit10(sortBy: .weekly, limit: 1) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+                self.t = data
+                print(data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
     init(coverLoader: ImageLoader, openLibraryService: OpenLibraryService) {
@@ -336,6 +354,11 @@ final class HomeViewController: UIViewController {
             plugImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -330),
         ])
     }
+    
+   private func removeSubstringFromWorks(_ input: String) -> String {
+        return input.replacingOccurrences(of: "/works/", with: "")
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -421,7 +444,15 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ButtonCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ButtonCollectionViewCell else {
+            let model = trendingBooks[indexPath.row]
+            let id = removeSubstringFromWorks(model.key)
+            let vc = BookDescriptionViewController(bookId: id)
+            navigationController?.pushViewController(vc, animated: true)
+            print(id)
+            return
+        }
+        
         switch indexPath {
         case IndexPath(row: 0, section: 0):
             sortByWeekly()
@@ -433,7 +464,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.selectedCell()
             sortByYearly()
         default: break
-            
         }
     }
     
@@ -441,6 +471,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.cellForItem(at: indexPath) as? ButtonCollectionViewCell else { return }
         cell.deselectedCell()
     }
+    
 }
 
 extension HomeViewController: UITextFieldDelegate {

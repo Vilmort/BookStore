@@ -12,6 +12,7 @@
 		0B03FB292B2219C2006E26D0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */; };
 		0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */; };
 		0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB282B2219C2006E26D0 /* OnboardingView.swift */; };
+		0B2D40D12B2B80D900316E56 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D40D02B2B80D900316E56 /* LikeService.swift */; };
 		0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60468B2B223474008D7834 /* CardForLikes.swift */; };
 		0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */; };
 		0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */; };
@@ -24,6 +25,7 @@
 		0B77B4B02B1BCA47007AB5BC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4AF2B1BCA47007AB5BC /* Kingfisher */; };
 		0B77B4B32B1BCA6C007AB5BC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4B22B1BCA6C007AB5BC /* Realm */; };
 		0B77B4B52B1BCA6C007AB5BC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B77B4B42B1BCA6C007AB5BC /* RealmSwift */; };
+		0BAB23C02B2B9461005E2A9C /* TrendingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23BF2B2B9461005E2A9C /* TrendingModel.swift */; };
 		0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */; };
 		0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76E2B2A1BF000C481C4 /* JASON.swift */; };
 		0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA7702B2A238400C481C4 /* BookModel.swift */; };
@@ -52,12 +54,14 @@
 		0B03FB262B2219C2006E26D0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		0B03FB282B2219C2006E26D0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0B2D40D02B2B80D900316E56 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		0B60468B2B223474008D7834 /* CardForLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardForLikes.swift; sourceTree = "<group>"; };
 		0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		0B77B4A22B1BB3F1007AB5BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		0B77B4A42B1BBB28007AB5BC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		0BAB23BF2B2B9461005E2A9C /* TrendingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingModel.swift; sourceTree = "<group>"; };
 		0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0BCEA76E2B2A1BF000C481C4 /* JASON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JASON.swift; sourceTree = "<group>"; };
 		0BCEA7702B2A238400C481C4 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 			path = WelcomeViewController;
 			sourceTree = "<group>";
 		};
+		0B2D40CF2B2B80AB00316E56 /* LikeService */ = {
+			isa = PBXGroup;
+			children = (
+				0B2D40D02B2B80D900316E56 /* LikeService.swift */,
+			);
+			path = LikeService;
+			sourceTree = "<group>";
+		};
 		0B60468A2B223474008D7834 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +162,7 @@
 			children = (
 				0B60468A2B223474008D7834 /* Cell */,
 				0B77B49F2B1BB3BF007AB5BC /* LikesViewController.swift */,
+				0B77B49B2B1BB336007AB5BC /* CategoriesViewController */,
 			);
 			path = LikesViewController;
 			sourceTree = "<group>";
@@ -160,6 +173,15 @@
 				0B77B4A22B1BB3F1007AB5BC /* AccountViewController.swift */,
 			);
 			path = AccountViewController;
+			sourceTree = "<group>";
+		};
+		0BAB23BE2B2B944C005E2A9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0BCEA7702B2A238400C481C4 /* BookModel.swift */,
+				0BAB23BF2B2B9461005E2A9C /* TrendingModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0BCEA7722B2A388200C481C4 /* BookDeskriptionViewController */ = {
@@ -223,7 +245,6 @@
 				0BCEA7722B2A388200C481C4 /* BookDeskriptionViewController */,
 				0B77B4A12B1BB3D6007AB5BC /* AccountViewController */,
 				0B77B49E2B1BB392007AB5BC /* LikesViewController */,
-				0B77B49B2B1BB336007AB5BC /* CategoriesViewController */,
 				0B77B4972B1BB2D5007AB5BC /* HomeViewController */,
 				0B03FB252B2219C2006E26D0 /* WelcomeViewController */,
 				0B77B4942B1BB23E007AB5BC /* CustomTabBarController */,
@@ -234,11 +255,12 @@
 		0BF89DC92B1BAD4600EE1525 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0B2D40CF2B2B80AB00316E56 /* LikeService */,
 				0B03FB212B21BC54006E26D0 /* OpenLibraryService.swift */,
 				0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */,
 				0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */,
 				0BCEA76E2B2A1BF000C481C4 /* JASON.swift */,
-				0BCEA7702B2A238400C481C4 /* BookModel.swift */,
+				0BAB23BE2B2B944C005E2A9C /* Models */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -402,9 +424,11 @@
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
+				0B2D40D12B2B80D900316E56 /* LikeService.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */,
 				24C316082B2A34670049ECB1 /* BookCategoryViewController.swift in Sources */,
+				0BAB23C02B2B9461005E2A9C /* TrendingModel.swift in Sources */,
 				0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,

@@ -5,53 +5,92 @@
 import UIKit
 import SnapKit
 
-class LikesViewController: UIViewController {
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
+class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    static let sharedInstance = LikesViewController()
+    private let openLibraryService = OpenLibraryService()
+    private var booksModel: [BookModel] = []
+    private var cardDataArray: [BookModel] = []
+    var bookIds: [String] = []
+
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        requests()
+        bookIds = LikeService.shared.likedBooks
+        print(bookIds)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        view.addSubview(scrollView)
-        
-        scrollView.snp.makeConstraints { make in
+        view.addSubview(tableView)
+        requests()
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        // Step 7: Retrieve book data from API or any other source
-        let bookDataArray = [
-            CardData(dictionary: ["category": "Category 1", "title": "Title 1", "author": "Author 1", "image": "Image"]),
-            CardData(dictionary: ["category": "Category 2", "title": "Title 2", "author": "Author 2", "image": "Image 2"]),
-            CardData(dictionary: ["category": "Category 3", "title": "Title 3", "author": "Author 3", "image": "Image 3"])
-        ]
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        displayCardViews(with: bookDataArray)
+        tableView.register(CardForLikes.self, forCellReuseIdentifier: "CardForLikes")
+        
+        
+    }
+    func requests() {
+        let dispatchGroup = DispatchGroup()
+        for i in bookIds {
+            dispatchGroup.enter()
+            openLibraryService.fetchBookCellInfo(with: i, completion: { result in
+                defer {
+                    dispatchGroup.leave()
+                }
+
+                switch result {
+                case .success(let data):
+                    self.booksModel.append(data)
+                    print(self.booksModel.count)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            })
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
+            print("Обновляем")
+        }
     }
     
-    func displayCardViews(with cardDataArray: [CardData]) {
-        for (index, data) in cardDataArray.enumerated() {
-            let cardView = CardForLikes()
-            cardView.configure(with: data)
-            
-            scrollView.addSubview(cardView)
-            
-            cardView.snp.makeConstraints { make in
-                make.width.equalTo(scrollView).inset(20)
-                make.centerX.equalToSuperview()
-                make.top.equalToSuperview().offset(index * 250 + 20)
-                
-                
-                if index == cardDataArray.count - 1 {
-                    make.bottom.equalToSuperview().inset(20)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return booksModel.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CardForLikes", for: indexPath) as? CardForLikes else {
+            return UITableViewCell()
+        }
+        DispatchQueue.main.async {
+//            cell.title =
+//            cell.author = self.booksModel[indexPath.row].subjects.first
+            ImageLoader.loadImage(withCoverID: String(self.booksModel[indexPath.row].covers[0]), size: .M) { image in
+                if let image = image {
+                    cell.configure(title: self.booksModel[indexPath.row].title, image: image, subjects: self.booksModel[indexPath.row].subjects.first ?? "")
+                    print("Устанавливаем ячейку")
+                } else {
+                    print("Failed to load image")
                 }
             }
         }
-        
-        scrollView.layoutIfNeeded()
-        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: CGFloat(cardDataArray.count) * 250 + 40)
+     
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
 }
+
+

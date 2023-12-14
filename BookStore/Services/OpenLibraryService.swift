@@ -57,7 +57,7 @@ class OpenLibraryService {
         }
     }
     
-    func fetchTrendingLimit10(sortBy category: TrendingCategory, limit: Int,completion: @escaping (Result<TrendingList, Error>) -> Void) {
+    func fetchTrendingLimit10(sortBy category: TrendingCategory, limit: Int,completion: @escaping (Result<MyTrendingModel, Error>) -> Void) {
         Task {
             do {
                 let data = try await trendingLimit10(.daily, limit: limit)
@@ -80,7 +80,7 @@ class OpenLibraryService {
         }
     }
     
-    private func trendingLimit10(_ target: TrendingCategory, limit: Int) async throws -> TrendingList {
+    private func trendingLimit10(_ target: TrendingCategory, limit: Int) async throws -> MyTrendingModel {
       let urlString = "https://openlibrary.org/trending/\(target.rawValue).json?limit=\(limit)"
       return try await networkManager.request(urlString: urlString)
     }

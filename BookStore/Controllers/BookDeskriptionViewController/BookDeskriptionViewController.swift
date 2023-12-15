@@ -53,7 +53,7 @@ class BookDescriptionViewController: UIViewController {
     
     private let bookImage: UIImageView = {
         let bookImage = UIImageView()
-        bookImage.image = UIImage(named: "mockImage")
+        bookImage.image = UIImage(named: "noImage")
         bookImage.contentMode = .scaleAspectFit
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         return bookImage

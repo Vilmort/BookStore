@@ -111,9 +111,9 @@ class CardForLikes: UITableViewCell {
         }
     }
     
-    func configure(title: String, image: UIImage, subjects: String) {
-        titleLabel.text = title
-        coverImageView.image = image
-        authorLabel.text = subjects
+    func configure(book: Book) {
+        titleLabel.text = book.title
+        coverImageView.image = book.image
+        authorLabel.text = book.category
     }
 }

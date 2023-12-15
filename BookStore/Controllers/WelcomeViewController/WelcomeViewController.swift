@@ -180,13 +180,36 @@ class WelcomeViewController: UIViewController {
 
 extension WelcomeViewController: UIScrollViewDelegate {
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxHorizontalOfSet = scrollView.contentSize.width - view.frame.width
+        let percentHorizontalOffset = scrollView.contentOffset.x / maxHorizontalOfSet
+        
+        if percentHorizontalOffset <= 0.5 {
+            let firstTransform = CGAffineTransform(scaleX: (0.5 - percentHorizontalOffset) / 0.5,
+                                                    y: (0.5 - percentHorizontalOffset) / 0.5)
+            let secondTransform = CGAffineTransform(scaleX: percentHorizontalOffset / 0.5,
+                                                    y: percentHorizontalOffset / 0.5)
+            slides[0].setPageLabelTransform(transform: firstTransform)
+            slides[1].setPageLabelTransform(transform: secondTransform)
+        } else {
+            let secondTransform = CGAffineTransform(scaleX: (1 - percentHorizontalOffset) / 0.5,
+                                                    y: (1 - percentHorizontalOffset) / 0.5)
+            let thirdTransform = CGAffineTransform(scaleX: percentHorizontalOffset,
+                                                    y: percentHorizontalOffset)
+            slides[1].setPageLabelTransform(transform: secondTransform)
+            slides[2].setPageLabelTransform(transform: thirdTransform)
+        }
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetOffsetX = targetContentOffset.pointee.x
         let currentPageIndex = Int(targetOffsetX / view.frame.width)
 
         pageControl.currentPage = currentPageIndex
-
         currentButtons()
+        
+        
+        
     }
 }
 

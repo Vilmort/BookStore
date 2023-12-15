@@ -61,6 +61,10 @@ class OnboardingView: UIView {
         onboardingImage.image = image
     }
     
+    func setPageLabelTransform(transform: CGAffineTransform) {
+        onboardingImage.transform = transform
+    }
+    
     //MARK: - Methods
     
     private func setConstraints() {

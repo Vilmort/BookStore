@@ -13,6 +13,8 @@
 		0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */; };
 		0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B03FB282B2219C2006E26D0 /* OnboardingView.swift */; };
 		0B2D40D12B2B80D900316E56 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D40D02B2B80D900316E56 /* LikeService.swift */; };
+		0B49E9F12B2C390700FF3219 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49E9F02B2C390700FF3219 /* RealmModel.swift */; };
+		0B49E9F32B2C4EE800FF3219 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49E9F22B2C4EE800FF3219 /* CategoryCell.swift */; };
 		0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60468B2B223474008D7834 /* CardForLikes.swift */; };
 		0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */; };
 		0B77B49A2B1BB2F5007AB5BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */; };
@@ -31,6 +33,8 @@
 		0BAB23CC2B2B98FB005E2A9C /* CategoriesNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23C62B2B98FB005E2A9C /* CategoriesNameModel.swift */; };
 		0BAB23CD2B2B98FB005E2A9C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23C82B2B98FB005E2A9C /* CategoriesViewController.swift */; };
 		0BAB23CE2B2B98FB005E2A9C /* BookCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23C92B2B98FB005E2A9C /* BookCategoryViewController.swift */; };
+		0BAB23D02B2C2D82005E2A9C /* RecentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23CF2B2C2D82005E2A9C /* RecentService.swift */; };
+		0BAB23D22B2C2E8D005E2A9C /* SaveToRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB23D12B2C2E8D005E2A9C /* SaveToRealmService.swift */; };
 		0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */; };
 		0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76E2B2A1BF000C481C4 /* JASON.swift */; };
 		0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA7702B2A238400C481C4 /* BookModel.swift */; };
@@ -39,11 +43,6 @@
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
-		24C316042B2A34670049ECB1 /* CategoriesImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C315FD2B2A34670049ECB1 /* CategoriesImagesModel.swift */; };
-		24C316052B2A34670049ECB1 /* CategoriesNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C315FE2B2A34670049ECB1 /* CategoriesNameModel.swift */; };
-		24C316062B2A34670049ECB1 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316002B2A34670049ECB1 /* CategoryCell.swift */; };
-		24C316072B2A34670049ECB1 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316022B2A34670049ECB1 /* CategoriesViewController.swift */; };
-		24C316082B2A34670049ECB1 /* BookCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C316032B2A34670049ECB1 /* BookCategoryViewController.swift */; };
 		CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */; };
 		CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E332B2483A800AC6E7E /* Extension View.swift */; };
 		CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */; };
@@ -60,6 +59,8 @@
 		0B03FB272B2219C2006E26D0 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		0B03FB282B2219C2006E26D0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0B2D40D02B2B80D900316E56 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
+		0B49E9F02B2C390700FF3219 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		0B49E9F22B2C4EE800FF3219 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCell.swift; path = BookStore/Controllers/CategoriesViewController/Cell/CategoryCell.swift; sourceTree = SOURCE_ROOT; };
 		0B60468B2B223474008D7834 /* CardForLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardForLikes.swift; sourceTree = "<group>"; };
 		0B77B4952B1BB251007AB5BC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +73,8 @@
 		0BAB23C62B2B98FB005E2A9C /* CategoriesNameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesNameModel.swift; sourceTree = "<group>"; };
 		0BAB23C82B2B98FB005E2A9C /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		0BAB23C92B2B98FB005E2A9C /* BookCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCategoryViewController.swift; sourceTree = "<group>"; };
+		0BAB23CF2B2C2D82005E2A9C /* RecentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentService.swift; sourceTree = "<group>"; };
+		0BAB23D12B2C2E8D005E2A9C /* SaveToRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToRealmService.swift; sourceTree = "<group>"; };
 		0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0BCEA76E2B2A1BF000C481C4 /* JASON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JASON.swift; sourceTree = "<group>"; };
 		0BCEA7702B2A238400C481C4 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
@@ -84,7 +87,6 @@
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C315FD2B2A34670049ECB1 /* CategoriesImagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesImagesModel.swift; sourceTree = "<group>"; };
 		24C315FE2B2A34670049ECB1 /* CategoriesNameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesNameModel.swift; sourceTree = "<group>"; };
-		24C316002B2A34670049ECB1 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		24C316022B2A34670049ECB1 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		24C316032B2A34670049ECB1 /* BookCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCategoryViewController.swift; sourceTree = "<group>"; };
 		CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBooksCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -123,12 +125,31 @@
 			path = WelcomeViewController;
 			sourceTree = "<group>";
 		};
-		0B2D40CF2B2B80AB00316E56 /* LikeService */ = {
+		0B2D40CF2B2B80AB00316E56 /* SevingServices */ = {
 			isa = PBXGroup;
 			children = (
 				0B2D40D02B2B80D900316E56 /* LikeService.swift */,
+				0BAB23CF2B2C2D82005E2A9C /* RecentService.swift */,
+				0B49E9EE2B2C381600FF3219 /* Realm */,
 			);
-			path = LikeService;
+			path = SevingServices;
+			sourceTree = "<group>";
+		};
+		0B49E9EE2B2C381600FF3219 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0BAB23D12B2C2E8D005E2A9C /* SaveToRealmService.swift */,
+				0B49E9EF2B2C382500FF3219 /* Models */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		0B49E9EF2B2C382500FF3219 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0B49E9F02B2C390700FF3219 /* RealmModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0B60468A2B223474008D7834 /* Cell */ = {
@@ -302,7 +323,7 @@
 		0BF89DC92B1BAD4600EE1525 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0B2D40CF2B2B80AB00316E56 /* LikeService */,
+				0B2D40CF2B2B80AB00316E56 /* SevingServices */,
 				0B03FB212B21BC54006E26D0 /* OpenLibraryService.swift */,
 				0B03FB232B21D3FD006E26D0 /* ImageLoader.swift */,
 				0BCEA76C2B2A1BE700C481C4 /* NetworkManager.swift */,
@@ -334,7 +355,7 @@
 		24C315FF2B2A34670049ECB1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				24C316002B2A34670049ECB1 /* CategoryCell.swift */,
+				0B49E9F22B2C4EE800FF3219 /* CategoryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -460,32 +481,31 @@
 				CEB84E3F2B289D4900AC6E7E /* UIBlockingProgressHUD.swift in Sources */,
 				0BAB23CA2B2B98FB005E2A9C /* CategoryCell.swift in Sources */,
 				0BCEA7742B2A389500C481C4 /* BookDeskriptionViewController.swift in Sources */,
-				24C316062B2A34670049ECB1 /* CategoryCell.swift in Sources */,
-				24C316052B2A34670049ECB1 /* CategoriesNameModel.swift in Sources */,
 				0BCEA76D2B2A1BE700C481C4 /* NetworkManager.swift in Sources */,
+				0BAB23D22B2C2E8D005E2A9C /* SaveToRealmService.swift in Sources */,
 				0B03FB242B21D3FD006E26D0 /* ImageLoader.swift in Sources */,
 				0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */,
 				0BAB23CE2B2B98FB005E2A9C /* BookCategoryViewController.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */,
 				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,
-				24C316072B2A34670049ECB1 /* CategoriesViewController.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
+				0B49E9F32B2C4EE800FF3219 /* CategoryCell.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
+				0BAB23D02B2C2D82005E2A9C /* RecentService.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B2D40D12B2B80D900316E56 /* LikeService.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,
 				0BAB23CD2B2B98FB005E2A9C /* CategoriesViewController.swift in Sources */,
 				CEB84E382B28774F00AC6E7E /* RecentBooksCollectionViewCell.swift in Sources */,
-				24C316082B2A34670049ECB1 /* BookCategoryViewController.swift in Sources */,
 				0BAB23C02B2B9461005E2A9C /* TrendingModel.swift in Sources */,
+				0B49E9F12B2C390700FF3219 /* RealmModel.swift in Sources */,
 				0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */,
 				0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */,
 				0B03FB222B21BC54006E26D0 /* OpenLibraryService.swift in Sources */,
 				0BAB23CC2B2B98FB005E2A9C /* CategoriesNameModel.swift in Sources */,
 				CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */,
-				24C316042B2A34670049ECB1 /* CategoriesImagesModel.swift in Sources */,
 				0B03FB2B2B2219C2006E26D0 /* OnboardingView.swift in Sources */,
 				0B03FB2A2B2219C2006E26D0 /* CustomPageControl.swift in Sources */,
 			);

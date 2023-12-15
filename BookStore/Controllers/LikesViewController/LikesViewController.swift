@@ -20,7 +20,7 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         requests()
-        bookIds = LikeService.shared.likedBooks
+//        bookIds = LikeService.shared.likedBooks
         print(bookIds)
     }
     

@@ -15,7 +15,7 @@ class LikesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "blackAndWhite")
         view.addSubview(scrollView)
         
         scrollView.snp.makeConstraints { make in

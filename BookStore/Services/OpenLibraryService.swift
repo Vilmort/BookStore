@@ -80,6 +80,17 @@ class OpenLibraryService {
         }
     }
     
+    func fetchSearchAuthors(with query:String, completion: @escaping (Result<[AuthorSearchResult], Error>) -> Void) {
+        Task {
+            do {
+                let data = try await openLibraryKit.author.search(query)
+                completion(.success(data))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     private func trendingLimit10(_ target: TrendingCategory, limit: Int) async throws -> MyTrendingModel {
       let urlString = "https://openlibrary.org/trending/\(target.rawValue).json?limit=\(limit)"
       return try await networkManager.request(urlString: urlString)
@@ -152,5 +163,15 @@ class OpenLibraryService {
              print(error.localizedDescription)
          }
  })
+ 
+ 
+ openLibraryService.fetchSearchAuthors(with: "Big Boss") { result in
+     switch result {
+     case .success(let data):
+         print(data)
+     case .failure(let error):
+         print(error.localizedDescription)
+     }
+ }
  
 */

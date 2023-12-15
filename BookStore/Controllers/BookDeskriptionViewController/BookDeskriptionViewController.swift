@@ -14,6 +14,8 @@ class BookDescriptionViewController: UIViewController {
     private let likedService = LikeService.shared
     private let openLibraryService = OpenLibraryService()
     var bookId: String
+    var ifBookLoaded = false
+    
 
     //MARK: - init
     init(bookId: String) {
@@ -51,7 +53,7 @@ class BookDescriptionViewController: UIViewController {
     
     private let bookImage: UIImageView = {
         let bookImage = UIImageView()
-        bookImage.image = #imageLiteral(resourceName: "Group")
+        bookImage.image = UIImage(named: "noImage")
         bookImage.contentMode = .scaleAspectFit
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         return bookImage
@@ -112,9 +114,9 @@ class BookDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likeButtonCheck()
         fetchBookDetails(id: bookId)
         setupNavigationBar()
+        likeButtonCheck()
         setupViews()
         setConstraints()
     }
@@ -151,6 +153,7 @@ private extension BookDescriptionViewController {
                 }
             }
             self.view.reloadInputViews()
+            self.ifBookLoaded = true
         }
     }
     
@@ -198,13 +201,21 @@ private extension BookDescriptionViewController {
     
     @objc func likeButtonTapped() {
         isLiked = likedService.ifElementLiked(bookId)
+        let book: Book = Book(
+            id: bookId,
+            title: bookNameLabel.text ?? "",
+            image: bookImage.image ?? UIImage(),
+            category: categoryLabel.text ?? ""
+        )
         if isLiked {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-            likedService.removeElement(bookId)
+            likedService.removeElement(book)
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-            likedService.appendElement(bookId)
+            likedService.appendElement(book)
         }
+        
+        print(likedService.likedBooks)
     }
     
     //"OL45804W"
@@ -214,7 +225,6 @@ private extension BookDescriptionViewController {
             switch result {
             case .success(let data):
                 self.setupUI(with: data)
-                
                 print(data)
             case .failure(let error):
                 print(error.localizedDescription)

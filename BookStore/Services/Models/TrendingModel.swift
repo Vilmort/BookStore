@@ -7,13 +7,12 @@
 
 import Foundation
 
-
 public struct MyTrendingModel: Decodable, Encodable {
     let query: String
     let works: [MyTrendingItem]
 }
 
-public struct MyTrendingItem: Decodable, Encodable {
+public struct MyTrendingItem: Decodable, Encodable, Equatable {
     public let key: String
     public let title: String
     public let editionCount: Int

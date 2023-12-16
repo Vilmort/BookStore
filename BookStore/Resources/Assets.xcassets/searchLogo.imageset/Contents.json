@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+<<<<<<< HEAD
+      "filename" : "lupa1.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "lupa2.png",
+=======
+      "filename" : "search.png",
+>>>>>>> 97e21af963ab23e56672a5df8f3e7d538c12833b
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -73,10 +73,12 @@ final class SearchBooksCollectionViewCell: UICollectionViewCell {
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             blackView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
             blackView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor),
-            blackView.topAnchor.constraint(equalTo: coverView.bottomAnchor),
+            blackView.heightAnchor.constraint(equalToConstant: 85),
             blackView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
             coverView.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 11),
-            coverView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            coverView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 35),
+            coverView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -35),
+            coverView.bottomAnchor.constraint(equalTo: blackView.topAnchor),
             genreLabel.leadingAnchor.constraint(equalTo: blackView.leadingAnchor, constant: 16),
             genreLabel.topAnchor.constraint(equalTo: coverView.bottomAnchor, constant: 6),
             nameOfBookLabel.leadingAnchor.constraint(equalTo: genreLabel.leadingAnchor),
@@ -91,11 +93,13 @@ final class SearchBooksCollectionViewCell: UICollectionViewCell {
     func configureCell(
         title: String,
         author: String,
-        genre: String
+        image: UIImage,
+        counting: String
     ) {
         nameOfBookLabel.text = title
         nameOfAuthorLabel.text = author
-        genreLabel.text = genre
+        coverView.image = image
+        genreLabel.text = "Edition count: \(counting)"
     }
  
     

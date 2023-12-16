@@ -56,13 +56,12 @@ final class RecentBooksCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(collectionView)
         collectionView.addSubview(coverView)
         collectionView.addSubview(blackView)
-        blackView.addSubview(genreLabel)
         blackView.addSubview(nameOfBookLabel)
         blackView.addSubview(nameOfAuthorLabel)
     }
     
     private func addView() {
-        [collectionView, coverView, blackView, genreLabel, nameOfBookLabel, nameOfAuthorLabel ].forEach(setupView(_:))
+        [collectionView, coverView, blackView, nameOfBookLabel, nameOfAuthorLabel ].forEach(setupView(_:))
     }
     
     private func applyConstraints() {
@@ -73,16 +72,16 @@ final class RecentBooksCollectionViewCell: UICollectionViewCell {
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             blackView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
             blackView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor),
-            blackView.topAnchor.constraint(equalTo: coverView.bottomAnchor),
+            blackView.heightAnchor.constraint(equalToConstant: 85),
             blackView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
             coverView.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 11),
-            coverView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
-            genreLabel.leadingAnchor.constraint(equalTo: blackView.leadingAnchor, constant: 16),
-            genreLabel.topAnchor.constraint(equalTo: coverView.bottomAnchor, constant: 6),
-            nameOfBookLabel.leadingAnchor.constraint(equalTo: genreLabel.leadingAnchor),
-            nameOfBookLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor),
+            coverView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 35),
+            coverView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -35),
+            coverView.bottomAnchor.constraint(equalTo: blackView.topAnchor),
+            nameOfBookLabel.leadingAnchor.constraint(equalTo: blackView.leadingAnchor, constant: 16),
+            nameOfBookLabel.topAnchor.constraint(equalTo: coverView.bottomAnchor, constant: 10),
             nameOfBookLabel.trailingAnchor.constraint(equalTo: blackView.trailingAnchor, constant: -20),
-            nameOfAuthorLabel.leadingAnchor.constraint(equalTo: genreLabel.leadingAnchor),
+            nameOfAuthorLabel.leadingAnchor.constraint(equalTo: nameOfBookLabel.leadingAnchor),
             nameOfAuthorLabel.topAnchor.constraint(equalTo: nameOfBookLabel.bottomAnchor, constant: 5),
             nameOfAuthorLabel.trailingAnchor.constraint(equalTo: blackView.trailingAnchor, constant: -16)
         ])
@@ -91,12 +90,10 @@ final class RecentBooksCollectionViewCell: UICollectionViewCell {
     func configureCell(
         title: String,
         author: String,
-        genre: String,
         image: UIImage
     ) {
         nameOfBookLabel.text = title
         nameOfAuthorLabel.text = author
-        genreLabel.text = genre
         coverView.image = image
     }
  

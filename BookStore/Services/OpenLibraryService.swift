@@ -60,7 +60,7 @@ class OpenLibraryService {
     func fetchTrendingLimit10(sortBy category: TrendingCategory, limit: Int,completion: @escaping (Result<MyTrendingModel, Error>) -> Void) {
         Task {
             do {
-                let data = try await trendingLimit10(.daily, limit: limit)
+                let data = try await trendingLimit10(category, limit: limit)
                 completion(.success(data))
             } catch {
                 completion(.failure(error))

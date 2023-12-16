@@ -493,7 +493,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case topBooksCollectionView:
             return CGSize(width: collectionView.bounds.width / 2.4 + 23, height: collectionView.bounds.height)
         case recentBooksCollectionView:
-            return CGSize(width: collectionView.bounds.width / 2, height: collectionView.bounds.height)
+            return CGSize(width: collectionView.bounds.width / 2.4 + 23, height: collectionView.bounds.height)
         case buttonCollection:
             return CGSize(width: collectionView.bounds.width / 3 - 10, height: collectionView.bounds.height)
         case searchBookCollection:

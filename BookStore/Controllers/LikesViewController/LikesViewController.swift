@@ -8,7 +8,7 @@ import SnapKit
 class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     static let sharedInstance = LikesViewController()
     private let openLibraryService = OpenLibraryService()
-    private let likeservice = LikeService.shared
+    private let likeService = LikeService.shared
     
     
     private let tableView: UITableView = {
@@ -19,6 +19,7 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        navigationController?.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {
@@ -38,11 +39,11 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likeservice.likedBooks.count
+        return likeService.likedBooks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let books = likeservice.likedBooks.reversed()[indexPath.row]
+        let books = likeService.likedBooks.reversed()[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CardForLikes", for: indexPath) as? CardForLikes else {
             return UITableViewCell()
         }
@@ -58,16 +59,22 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-            likeservice.removeElement(likeservice.likedBooks.reversed()[indexPath.row])
+            likeService.removeElement(likeService.likedBooks.reversed()[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
             
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = likeService.likedBooks.reversed()[indexPath.row].id
+        let vc = BookDescriptionViewController(bookId: id )
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 
 extension LikesViewController: CardForLikesDelegate {
     func deleteButtonTapped(at indexPath: IndexPath) {
-        likeservice.removeElement(likeservice.likedBooks.reversed()[indexPath.row])
+        likeService.removeElement(likeService.likedBooks.reversed()[indexPath.row])
         tableView.reloadData()
     }
 }

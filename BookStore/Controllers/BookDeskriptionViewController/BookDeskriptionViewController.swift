@@ -233,6 +233,12 @@ private extension BookDescriptionViewController {
             }
         }
     }
+    
+    func fetchRaiting() {
+        let random = Float.random(in: 1...5)
+        let formattedRandom = String(format: "%.1f", random)
+        ratingLabel.text = String(formattedRandom)
+    }
 }
 
 

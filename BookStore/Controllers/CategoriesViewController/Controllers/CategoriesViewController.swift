@@ -66,12 +66,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		print("SearchResultsViewController will appear")
+        navigationController?.tabBarController?.tabBar.isHidden = false
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
 
 		addViews()
 		setupViews()

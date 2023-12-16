@@ -1,18 +1,22 @@
+//
 //  CardForLikes.swift
 //
 
 import UIKit
 import SnapKit
 import Foundation
+import RealmSwift
+
+protocol CardForLikesDelegate: AnyObject {
+    func deleteButtonTapped(at indexPath: IndexPath)
+}
 
 class CardForLikes: UITableViewCell {
+    var indexPath: IndexPath!
+    weak var delegate: CardForLikesDelegate?
+    var book: Book?
+    private let likedService = LikeService.shared
     
-//        var category: String?
-//        var title: String?
-//        var author: String?
-//        var coverImage: UIImage?
-    
-    private var cardData: BookModel?
     private let delButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "cross"), for: .normal)
@@ -26,6 +30,7 @@ class CardForLikes: UITableViewCell {
         rectView.backgroundColor = .black
         rectView.layer.cornerRadius = 10
         rectView.layer.masksToBounds = true
+        
         return rectView
     }()
     
@@ -33,6 +38,7 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.italicSystemFont(ofSize: 10)
         label.textColor = .white
+        
         return label
     }()
     
@@ -40,6 +46,7 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
+        
         return label
     }()
     
@@ -47,17 +54,20 @@ class CardForLikes: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
+        
         return label
     }()
     
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        
         return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupLayout()
     }
     
@@ -76,15 +86,27 @@ class CardForLikes: UITableViewCell {
         rectView.addSubview(categoryLabel)
         
         rectView.snp.makeConstraints { make in
-            make.height.equalTo(150)
-            
+            make.height.equalTo(140)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        coverImageView.snp.makeConstraints { make in
+            make.height.equalTo(rectView.snp.height)
+            make.width.equalTo(100)
+            make.leading.equalToSuperview()
+        }
+        
+        delButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.width.equalTo(20)
         }
         
         categoryLabel.snp.makeConstraints { make in
             make.leading.equalTo(coverImageView.snp.trailing).offset(8)
             make.top.equalToSuperview().offset(8)
+            make.trailing.equalTo(delButton.snp.leading).offset(-8)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -98,22 +120,21 @@ class CardForLikes: UITableViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.trailing.equalTo(titleLabel)
         }
-        
-        coverImageView.snp.makeConstraints { make in
-            make.top.leading.bottom.equalToSuperview()
-            
-        }
-        
-        delButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.width.equalTo(20)
-        }
     }
     
-    func configure(book: Book) {
-        titleLabel.text = book.title
-        coverImageView.image = book.image
-        authorLabel.text = book.category
+    func configure(title: String, image: UIImage, subjects: String, indexPath: IndexPath,  delegate: CardForLikesDelegate ) {
+        titleLabel.text = title
+        coverImageView.image = image
+        authorLabel.text = subjects
+        self.indexPath = indexPath
+        self.delegate = delegate
+        delButton.addTarget(self, action: #selector(delCell), for: .touchUpInside)
+    }
+    
+    @objc func delCell() {
+        delegate?.deleteButtonTapped(at: indexPath)
     }
 }
+
+
+

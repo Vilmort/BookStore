@@ -48,7 +48,7 @@ class BookDescriptionViewController: UIViewController {
     }()
     
     private lazy var bookNameLabel: UILabel = {
-        createLabel(with: "The Picture of Dorian Gray", fontSize: 30, fontWeight: .bold)
+        createLabel(with: "", fontSize: 30, fontWeight: .bold)
     }()
     
     private let bookImage: UIImageView = {
@@ -57,6 +57,12 @@ class BookDescriptionViewController: UIViewController {
         bookImage.contentMode = .scaleAspectFit
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         return bookImage
+    }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     private lazy var authorLabel: UILabel = {
@@ -132,6 +138,7 @@ private extension BookDescriptionViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(bookNameLabel)
         contentView.addSubview(bookImage)
+        contentView.addSubview(activityIndicator)
         contentView.addSubview(verticalStack)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(bookDescriptionLabel)
@@ -147,6 +154,7 @@ private extension BookDescriptionViewController {
             ImageLoader.loadImage(withCoverID: "\(data.covers[0])", size: .M) { image in
                 if let myImage = image {
                     self.bookImage.image = myImage
+                    self.activityIndicator.stopAnimating()
                     print("Successfully loaded image")
                 } else {
                     print("Failed to load image")
@@ -179,16 +187,10 @@ private extension BookDescriptionViewController {
         navigationController?.navigationBar.isHidden = false
         navigationController?.tabBarController?.tabBar.isHidden = true
         navigationItem.title = "Classics"
-//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-//        navigationItem.leftBarButtonItem = backButton
+
         let likeButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(likeButtonTapped))
         navigationItem.rightBarButtonItem = likeButton
     }
-    
-//    @objc func backButtonTapped() {
-//        print("back")
-//    }
-//    
     
     private func likeButtonCheck() {
         isLiked = likedService.ifElementLiked(bookId)
@@ -218,8 +220,8 @@ private extension BookDescriptionViewController {
         print(likedService.likedBooks)
     }
     
-    //"OL45804W"
     func fetchBookDetails(id: String?) {
+        activityIndicator.startAnimating()
         guard let id else { return }
         openLibraryService.fetchBookDetails(bookID: id) { result in
             switch result {
@@ -253,6 +255,9 @@ extension BookDescriptionViewController {
             bookNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             bookNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             bookNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: bookImage.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: bookImage.centerYAnchor),
             
             bookImage.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 15),
             bookImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),

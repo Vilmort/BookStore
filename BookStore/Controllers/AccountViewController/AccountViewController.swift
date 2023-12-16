@@ -7,11 +7,39 @@
 
 import UIKit
 
-final class AccountViewController: UIViewController {
+enum Theme : Int {
+    case device
+    case light
+    case dark
     
+    func getUserInterfaceStyle() -> UIUserInterfaceStyle {
+        switch self {
+        case .device:
+            return .unspecified
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
+    }
+}
+
+final class AccountViewController: UIViewController {
+    private var isDarkModeEnabled: Bool = false
     private let defaults = UserDefaults.standard
     private let boundsX = UIScreen.main.bounds.width
     private let boundsY = UIScreen.main.bounds.height
+    
+    let buttonTheme: UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["System", "Light", "Dark"])
+        segment.translatesAutoresizingMaskIntoConstraints = false
+        return segment
+    }()
+    
+    @objc private func segmentChanged() {
+        MTUserDefaults.shared.theme = Theme(rawValue: buttonTheme.selectedSegmentIndex) ?? .device
+        view.window?.overrideUserInterfaceStyle = MTUserDefaults.shared.theme.getUserInterfaceStyle()
+    }
     
     private var textFieldMy: UITextField {
         let textView = UITextField(frame: CGRect.init(x: boundsX * 0.10, y: boundsY / 2, width: boundsX * 0.80, height: boundsY * 0.05))
@@ -23,9 +51,9 @@ final class AccountViewController: UIViewController {
         textView.layer.cornerRadius = 10
         textView.leftView = leftView
         textView.leftViewMode = .always
-        textView.textColor = .black
+        textView.textColor = UIColor(named: "whiteAndBlack")
         textView.font = .boldSystemFont(ofSize: 20)
-        textView.backgroundColor = .systemGray5
+        textView.backgroundColor = .systemGray2
         return textView
     }
     
@@ -49,6 +77,15 @@ final class AccountViewController: UIViewController {
         return view
     }()
     
+    func setupThemeButton() {
+        buttonTheme.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80).isActive = true
+        buttonTheme.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        buttonTheme.widthAnchor.constraint(equalToConstant: view.self.frame.width - 30).isActive = true
+        buttonTheme.tintColor = UIColor(named: "whiteAndBlack")
+        buttonTheme.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+    }
+    
+    
     func setAvatarConstraints() {
         avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         avatarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -65,6 +102,7 @@ final class AccountViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileImageButtonTapped))
         avatarView.isUserInteractionEnabled = true
         avatarView.addGestureRecognizer(tap)
+        
     }
     
     override func viewDidLoad() {
@@ -72,14 +110,16 @@ final class AccountViewController: UIViewController {
         avatarView.image = loadImage()
         userName.text = defaults.string(forKey: "username") == nil ? "" : "\(defaults.string(forKey: "username")!)"
         super.viewDidLoad()
-        view.backgroundColor = .purple
+        view.backgroundColor = UIColor.systemGray6
         view.addSubview(avatarView)
         view.addSubview(userName)
+        view.addSubview(buttonTheme)
         tapGesture()
         userName.delegate = self
         
-        
+        buttonTheme.selectedSegmentIndex = MTUserDefaults.shared.theme.rawValue
         setAvatarConstraints()
+        setupThemeButton()
     }
 }
 
@@ -144,7 +184,3 @@ extension AccountViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-

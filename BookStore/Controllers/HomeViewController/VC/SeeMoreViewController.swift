@@ -29,10 +29,11 @@ final class SeeMoreViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.tabBarController?.tabBar.isHidden = false
+        navigationController?.tabBarController?.tabBar.isHidden = true
         recentBooks = recentService.recentBooks.reversed()
         recentBooksCollectionView.reloadData()
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

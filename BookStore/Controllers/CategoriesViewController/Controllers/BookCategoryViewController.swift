@@ -32,6 +32,10 @@ class BookCategoryViewController: UIViewController, UICollectionViewDataSource, 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = true
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -78,6 +82,10 @@ class BookCategoryViewController: UIViewController, UICollectionViewDataSource, 
 			make.bottom.equalToSuperview().offset(-60)
 		}
 	}
+    
+    private func removeSubstringFromWorks(_ input: String) -> String {
+         return input.replacingOccurrences(of: "/works/", with: "")
+     }
 
 	// MARK: - UICollectionViewDataSource
 
@@ -103,4 +111,11 @@ class BookCategoryViewController: UIViewController, UICollectionViewDataSource, 
 		}
 		return cell
 	}
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let book = books[indexPath.item]
+        let id = removeSubstringFromWorks(book.key)
+        let vc = BookDescriptionViewController(bookId: id )
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -7,9 +7,42 @@
 
 import UIKit
 import SnapKit
+import OpenLibraryKit
 
 class CategoriesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+	private let openLibraryService = OpenLibraryService()
+	private var searchResultsViewController: SearchResultsViewController?
+	
+	
+	private lazy var searchTextField: UITextField = {
+		let textField = UITextField()
+		textField.placeholder = "Search title/author"
+		textField.borderStyle = .roundedRect
+		return textField
+	}()
+	
+	lazy var searchButton: UIButton = { 
+		let button = UIButton()
+		button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+		button.addTarget(self, action: #selector(self.searchButtonTapped), for: .touchUpInside)
+		return button
+	}()
+	
+	lazy var filterButton: UIButton = {
+		let button = UIButton()
+		button.setImage(UIImage(named: "filterIcon"), for: .normal) 
+		button.addTarget(self, action: #selector(self.filterButtonTapped), for: .touchUpInside)
+		return button
+	}()
+	
+	private lazy var searchStackView: UIStackView = {
+		let stackView = UIStackView(arrangedSubviews: [searchTextField, searchButton, filterButton])
+		stackView.spacing = 8
+		stackView.alignment = .center
+		return stackView
+	}()
+	
 	private let labelCategories: UILabel = {
 		let label = UILabel()
 		label.text = "Categories"
@@ -30,6 +63,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 		collectionView.showsVerticalScrollIndicator = false
 		return collectionView
 	}()
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		print("SearchResultsViewController will appear")
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,27 +76,75 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 		addViews()
 		setupViews()
 	}
+	
+	@objc func searchButtonTapped() {
+		print("tauch")
+		guard let query = searchTextField.text, !query.isEmpty else {
+			return
+		}
+		
+		UIBlockingProgressHUD.show()
+		DispatchQueue.main.async { [self] in
+			openLibraryService.fetchSearch(with: query) { [weak self] result in
+				switch result {
+				case .success(let searchResults):
+					self?.showSearchResults(searchResults)
+					print("FIRE")
+				case .failure(let error):
+					print("Search failed: \(error.localizedDescription)")
+				}
+				DispatchQueue.main.async {
+					UIBlockingProgressHUD.dismiss()
+				}
+		   }
+		}
+	}
+	
+	private func showSearchResults(_ results: [SearchResult]) {
+		DispatchQueue.main.async { [weak self] in
+			if self?.searchResultsViewController == nil {
+				self?.searchResultsViewController?.title = "Search Results"
+				self?.searchResultsViewController = SearchResultsViewController()
+				self?.navigationController?.pushViewController(self?.searchResultsViewController ?? UIViewController(), animated: true)
+			}
+			self?.searchResultsViewController?.updateSearchResults(results: results)
+			print("Search results count: \(results.count)") // Добавим этот вывод в консоль
+			//  вывод в консоль для проверки заголовка
+			print("Search results view controller title: \(self?.searchResultsViewController?.title ?? "No title")")
+			
+		}
+	}
+	
+	@objc func filterButtonTapped() {
+		print("tauch")
+		searchResultsViewController?.sortedResult()
+	}
 
 	func setupViews() {
 		collectionView.dataSource = self
 		collectionView.delegate = self
 
-		//view.addSubview(labelCategories)
+		searchStackView.snp.makeConstraints { make in
+			make.top.equalToSuperview().offset(82)
+			make.leading.trailing.equalToSuperview().inset(20)
+			//make.height.equalTo(56)
+		}
+		
 		labelCategories.snp.makeConstraints { make in
-			make.top.equalToSuperview().offset(168)
+			make.top.equalTo(searchStackView.snp.bottom).offset(32)
 			make.leading.trailing.equalToSuperview().inset(20)
 			make.height.equalTo(28)
 		}
-
-		//view.addSubview(collectionView)
+		
 		collectionView.snp.makeConstraints { make in
-			make.top.equalTo(labelCategories.snp.bottom).offset(32)
+			make.top.equalTo(labelCategories.snp.bottom).offset(22)
 			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(15) // Отступ снизу от UITabBarController
 			make.leading.trailing.equalToSuperview()//.inset(20)
 		}
 	}
 
 	func addViews() {
+		view.addSubview(searchStackView)
 		view.addSubview(collectionView)
 		view.addSubview(labelCategories)
 	}

@@ -39,11 +39,12 @@
 		0BCEA76F2B2A1BF000C481C4 /* JASON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA76E2B2A1BF000C481C4 /* JASON.swift */; };
 		0BCEA7712B2A238400C481C4 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA7702B2A238400C481C4 /* BookModel.swift */; };
 		0BCEA7742B2A389500C481C4 /* BookDeskriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEA7732B2A389500C481C4 /* BookDeskriptionViewController.swift */; };
+		0BDE39692B2E535B00234F20 /* SeeMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE39682B2E535A00234F20 /* SeeMoreViewController.swift */; };
 		0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */; };
 		0BF89DB52B1BAC3700EE1525 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */; };
 		0BF89DBC2B1BAC3900EE1525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */; };
 		0BF89DBF2B1BAC3900EE1525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF89DBD2B1BAC3900EE1525 /* LaunchScreen.storyboard */; };
-		CE6410C32B2D92A900F8E935 /* SeeMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6410C22B2D92A900F8E935 /* SeeMoreViewController.swift */; };
+		24B81B1D2B2D251C00FF7F2B /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B81B1C2B2D251C00FF7F2B /* SearchResultsViewController.swift */; };
 		CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */; };
 		CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E332B2483A800AC6E7E /* Extension View.swift */; };
 		CEB84E362B27051E00AC6E7E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */; };
@@ -80,13 +81,14 @@
 		0BCEA76E2B2A1BF000C481C4 /* JASON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JASON.swift; sourceTree = "<group>"; };
 		0BCEA7702B2A238400C481C4 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		0BCEA7732B2A389500C481C4 /* BookDeskriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDeskriptionViewController.swift; sourceTree = "<group>"; };
+		0BDE39682B2E535A00234F20 /* SeeMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeMoreViewController.swift; sourceTree = "<group>"; };
 		0BF89DAF2B1BAC3700EE1525 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF89DB22B1BAC3700EE1525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF89DB42B1BAC3700EE1525 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0BF89DBB2B1BAC3900EE1525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF89DBE2B1BAC3900EE1525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF89DC02B1BAC3900EE1525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE6410C22B2D92A900F8E935 /* SeeMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreViewController.swift; sourceTree = "<group>"; };
+		24B81B1C2B2D251C00FF7F2B /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		CEB84E312B24832C00AC6E7E /* TopBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB84E332B2483A800AC6E7E /* Extension View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		CEB84E352B27051E00AC6E7E /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				0BAB23C82B2B98FB005E2A9C /* CategoriesViewController.swift */,
 				0BAB23C92B2B98FB005E2A9C /* BookCategoryViewController.swift */,
+				24B81B1C2B2D251C00FF7F2B /* SearchResultsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -335,7 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				0B77B4992B1BB2F5007AB5BC /* HomeViewController.swift */,
-				CE6410C22B2D92A900F8E935 /* SeeMoreViewController.swift */,
+				0BDE39682B2E535A00234F20 /* SeeMoreViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -451,13 +454,14 @@
 				0BAB23CE2B2B98FB005E2A9C /* BookCategoryViewController.swift in Sources */,
 				0B77B4A52B1BBB28007AB5BC /* CustomColor.swift in Sources */,
 				CEB84E3A2B2881B600AC6E7E /* SearchBooksCollectionViewCell.swift in Sources */,
-				CE6410C32B2D92A900F8E935 /* SeeMoreViewController.swift in Sources */,
 				CEB84E322B24832C00AC6E7E /* TopBooksCollectionViewCell.swift in Sources */,
 				0B77B4A32B1BB3F1007AB5BC /* AccountViewController.swift in Sources */,
 				CEB84E342B2483A800AC6E7E /* Extension View.swift in Sources */,
 				0B49E9F32B2C4EE800FF3219 /* CategoryCell.swift in Sources */,
 				0BF89DB32B1BAC3700EE1525 /* AppDelegate.swift in Sources */,
+				24B81B1D2B2D251C00FF7F2B /* SearchResultsViewController.swift in Sources */,
 				0BAB23D02B2C2D82005E2A9C /* RecentService.swift in Sources */,
+				0BDE39692B2E535B00234F20 /* SeeMoreViewController.swift in Sources */,
 				0B60468C2B223474008D7834 /* CardForLikes.swift in Sources */,
 				0B2D40D12B2B80D900316E56 /* LikeService.swift in Sources */,
 				0B77B4962B1BB251007AB5BC /* CustomTabBarController.swift in Sources */,

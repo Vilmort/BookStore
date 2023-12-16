@@ -42,6 +42,7 @@ class BookCategoryViewController: UIViewController, UICollectionViewDataSource, 
 	}
 
 	func loadBooks() {
+		UIBlockingProgressHUD.show()
 		openLibraryService.fetchCategory(category: category) { result in
 			DispatchQueue.main.async {
 				switch result {
@@ -50,6 +51,9 @@ class BookCategoryViewController: UIViewController, UICollectionViewDataSource, 
 					self.collectionView.reloadData()
 				case .failure(let error):
 					print("Error loading books: \(error)")
+				}
+				DispatchQueue.main.async {
+					UIBlockingProgressHUD.dismiss()
 				}
 			}
 		}

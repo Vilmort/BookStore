@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Person icon.png",
+      "filename" : "Person photo 2.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Person photo.png",
       "idiom" : "universal"
     }
   ],

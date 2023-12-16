@@ -32,6 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.navigationBar.isHidden = true
         }
         window?.makeKeyAndVisible()
+        window?.overrideUserInterfaceStyle = MTUserDefaults.shared.theme.getUserInterfaceStyle()
+
     }
     
     private func onboardingCompleted() -> Bool {

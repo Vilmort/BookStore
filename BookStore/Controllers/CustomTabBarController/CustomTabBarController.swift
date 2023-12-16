@@ -75,12 +75,12 @@ class CustomTabBarController: UITabBarController {
         tabBar.layer.insertSublayer(roundLayer, at: 0)
         tabBar.itemWidth = width / 5
         tabBar.itemPositioning = .centered
-        roundLayer.fillColor = UIColor.ghostWhite.cgColor
+        roundLayer.fillColor = UIColor.systemGray2.cgColor
         tabBar.layer.masksToBounds = false
         let appearance = UITabBarItem.appearance()
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
-            NSAttributedString.Key.foregroundColor: UIColor.black
+            NSAttributedString.Key.foregroundColor:UIColor.systemGray5
         ]
         appearance.setTitleTextAttributes(attributes, for: .normal)
     }

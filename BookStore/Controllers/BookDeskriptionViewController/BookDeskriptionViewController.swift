@@ -60,7 +60,7 @@ class BookDescriptionViewController: UIViewController {
     }()
     
     private let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .medium)
+        let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -78,7 +78,7 @@ class BookDescriptionViewController: UIViewController {
     }()
     
     private lazy var categoryNameLabel: UILabel = {
-        createLabel(with: "Classics", fontSize: 16, fontWeight: .bold)
+        createLabel(with: "", fontSize: 16, fontWeight: .bold)
     }()
     
     private lazy var ratingLabel: UILabel = {
@@ -86,7 +86,7 @@ class BookDescriptionViewController: UIViewController {
     }()
     
     private lazy var bookRatingLabel: UILabel = {
-        createLabel(with: "4.11/5", fontSize: 16, fontWeight: .bold)
+        createLabel(with: "", fontSize: 16, fontWeight: .bold)
     }()
     
     private lazy var descriptionLabel: UILabel = {
@@ -148,7 +148,9 @@ private extension BookDescriptionViewController {
         //authorNameLabel.text = data.subjectPeople
         DispatchQueue.main.async {
             self.categoryNameLabel.text = data.subjects[0]
-            //bookRatingLabel.text = data.
+            self.navigationItem.title = data.subjects[0]
+            //self.authorNameLabel.text = data.subjectPeople?[0]
+            self.fetchRating()
             self.bookNameLabel.text = data.title
             self.bookDescriptionLabel.text = data.bookDescription.debugDescription
             ImageLoader.loadImage(withCoverID: "\(data.covers[0])", size: .M) { image in
@@ -234,10 +236,12 @@ private extension BookDescriptionViewController {
         }
     }
     
-    func fetchRaiting() {
-        let random = Float.random(in: 1...5)
+    func fetchRating() {
+        let random = Float.random(in: 3.5...5)
         let formattedRandom = String(format: "%.1f", random)
-        ratingLabel.text = String(formattedRandom)
+        DispatchQueue.main.async {
+            self.bookRatingLabel.text = "\(formattedRandom)/5"
+        }
     }
 }
 
@@ -262,8 +266,8 @@ extension BookDescriptionViewController {
             bookNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             bookNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: bookImage.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: bookImage.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
             
             bookImage.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 15),
             bookImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),

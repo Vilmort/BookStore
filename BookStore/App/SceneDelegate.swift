@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let navigationController = UINavigationController(rootViewController: tabBarController)
             window?.rootViewController = navigationController
             navigationController.navigationBar.isHidden = true
+            navigationController.navigationBar.barStyle = .black
         } else {
             let tabBarController = WelcomeViewController()
             let navigationController = UINavigationController(rootViewController: tabBarController)

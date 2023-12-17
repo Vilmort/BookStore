@@ -13,12 +13,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 
 	private let openLibraryService = OpenLibraryService()
 	private var searchResultsViewController: SearchResultsViewController?
-	
+    private var resultsAuthor: [AuthorSearchResult] = []
 	
 	private lazy var searchTextField: UITextField = {
 		let textField = UITextField()
 		textField.placeholder = "Search title/author"
 		textField.borderStyle = .roundedRect
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
 		return textField
 	}()
 	
@@ -72,13 +74,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
+        searchTextField.delegate = self
 		addViews()
 		setupViews()
 	}
 	
 	@objc func searchButtonTapped() {
-		print("tauch")
 		guard let query = searchTextField.text, !query.isEmpty else {
 			return
 		}
@@ -89,7 +90,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 				switch result {
 				case .success(let searchResults):
 					self?.showSearchResults(searchResults)
-					print("FIRE")
 				case .failure(let error):
 					print("Search failed: \(error.localizedDescription)")
 				}
@@ -97,26 +97,33 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 					UIBlockingProgressHUD.dismiss()
 				}
 		   }
+            openLibraryService.fetchSearchAuthors(with: query) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultsAuthor = data
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
 		}
 	}
 	
-	private func showSearchResults(_ results: [SearchResult]) {
+    private func showSearchResults(_ results: [SearchResult]) {
 		DispatchQueue.main.async { [weak self] in
-			if self?.searchResultsViewController == nil {
 				self?.searchResultsViewController?.title = "Search Results"
 				self?.searchResultsViewController = SearchResultsViewController()
 				self?.navigationController?.pushViewController(self?.searchResultsViewController ?? UIViewController(), animated: true)
-			}
 			self?.searchResultsViewController?.updateSearchResults(results: results)
+            self?.searchResultsViewController?.searchAuthorResults = self?.resultsAuthor ?? []
 			print("Search results count: \(results.count)") // Добавим этот вывод в консоль
 			//  вывод в консоль для проверки заголовка
 			print("Search results view controller title: \(self?.searchResultsViewController?.title ?? "No title")")
 			
 		}
 	}
+    
 	
 	@objc func filterButtonTapped() {
-		print("tauch")
 		searchResultsViewController?.sortedResult()
 	}
 
@@ -186,29 +193,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDataSource, UI
 	}
 }
 
-// Кастомная ячейка для изображений категорий
-class CategoryCell: UICollectionViewCell {
-	static let reuseIdentifier = "CategoryCell"
 
-	let imageView: UIImageView = {
-		let imageView = UIImageView()
-		imageView.clipsToBounds = true
-		return imageView
-	}()
-
-	override init(frame: CGRect) {
-		super.init(frame: frame)
-		setupViews()
-	}
-
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-
-	func setupViews() {
-		addSubview(imageView)
-		imageView.snp.makeConstraints { make in
-			make.edges.equalToSuperview()
-		}
-	}
+extension CategoriesViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
+

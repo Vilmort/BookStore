@@ -564,6 +564,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension HomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchBooksField.endEditing(true)
+        textField.resignFirstResponder()
         return true
     }
     

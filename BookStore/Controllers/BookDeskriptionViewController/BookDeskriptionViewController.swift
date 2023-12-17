@@ -125,6 +125,7 @@ class BookDescriptionViewController: UIViewController {
         likeButtonCheck()
         setupViews()
         setConstraints()
+        fetchRaiting()
     }
 }
 
@@ -145,12 +146,10 @@ private extension BookDescriptionViewController {
     }
     
     func setupUI(with data: Work) {
-        //authorNameLabel.text = data.subjectPeople
         DispatchQueue.main.async {
             self.categoryNameLabel.text = data.subjects[0]
-            //bookRatingLabel.text = data.
             self.bookNameLabel.text = data.title
-            self.bookDescriptionLabel.text = data.bookDescription.debugDescription
+            self.bookDescriptionLabel.text = self.unwrappedText(text: data.bookDescription.debugDescription.description.description)
             ImageLoader.loadImage(withCoverID: "\(data.covers[0])", size: .M) { image in
                 if let myImage = image {
                     self.bookImage.image = myImage
@@ -235,9 +234,17 @@ private extension BookDescriptionViewController {
     }
     
     func fetchRaiting() {
-        let random = Float.random(in: 1...5)
+        let random = Float.random(in: 3...5)
         let formattedRandom = String(format: "%.1f", random)
-        ratingLabel.text = String(formattedRandom)
+        bookRatingLabel.text = String(formattedRandom) + "/5"
+    }
+    
+    private func unwrappedText(text: String?) -> String {
+        if let unwrappedText = text {
+           return unwrappedText
+        } else {
+            return ""
+        }
     }
 }
 

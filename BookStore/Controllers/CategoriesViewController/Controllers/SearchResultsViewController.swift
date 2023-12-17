@@ -12,7 +12,10 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
 
 	var searchResults: [SearchResult] = []
 	private let tableView = UITableView()
-
+    private let openLibraryService = OpenLibraryService()
+     var searchAuthorResults: [AuthorSearchResult] = []
+    private var ifFilterIsOn = false
+    
 	lazy var filterButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage(named: "filterIcon"), for: .normal)
@@ -40,22 +43,47 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
 			 make.leading.trailing.bottom.equalToSuperview()
 		 }
 	}
+    
+    private func setupTableViewSection() -> Int {
+        if ifFilterIsOn {
+            return searchAuthorResults.count
+        } else  {
+            return searchResults.count
+        }
+    }
+    
+    private func removeSubstringFromWorks(_ input: String) -> String {
+         return input.replacingOccurrences(of: "/works/", with: "")
+     }
+    
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return searchResults.count
+		return setupTableViewSection()
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
-		let result = searchResults[indexPath.row]
-		cell.textLabel?.text = result.title
+        if ifFilterIsOn {
+            let result = searchAuthorResults[indexPath.row]
+            cell.textLabel?.text = result.key
+        } else {
+            let result = searchResults[indexPath.row]
+            cell.textLabel?.text = result.title
+        }
 		return cell
 	}
 
 	// MARK: - UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if ifFilterIsOn {
+            let result = searchAuthorResults[indexPath.row]
+        } else {
+            let result = searchResults[indexPath.row]
+            let id = removeSubstringFromWorks(result.key)
+            let vc = BookDescriptionViewController(bookId: id )
+            navigationController?.pushViewController(vc, animated: true)
+        }
 	}
 
 	func updateSearchResults(results: [SearchResult]) {
@@ -71,9 +99,12 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
 	}
 
 	@objc func sortedResult() {
-		//let sortedResult = searchResults.sorted { $0.title < $1.title }
-		searchResults.sort { $0.title < $1.title }
-		print(sortedResult)
-		tableView.reloadData()
+        if ifFilterIsOn {
+            filterButton.backgroundColor = .clear
+        } else  {
+            filterButton.backgroundColor = . red
+        }
+        ifFilterIsOn.toggle()
+        tableView.reloadData()
 	}
 }
